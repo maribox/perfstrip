@@ -36,17 +36,17 @@
 
 <div class="flex flex-col flex-1 w-full justify-center">
   <div class="w-full flex flex-col items-center">
-    <h1 class="text-3xl font-bold text-center mb-8">Create New Project</h1>
+    <h1 class="text-5xl font-bold text-center mb-8">Create New Project</h1>
     
-    <div role="tablist" class="tabs tabs-box justify-center w-fit">
-      <button class="tab {selectedTab == 'perfboard' ? 'tab-active' : ''}" onclick={() => selectedTab = "perfboard"}>Perfboard</button>
+    <div role="tablist" class="tabs tabs-box tabs-xl justify-center w-fit">
+      <button class="tab  {selectedTab == 'perfboard' ? 'tab-active' : ''}" onclick={() => selectedTab = "perfboard"}>Perfboard</button>
       <button class="tab tab-disabled" onclick={() => selectedTab = "stripboard"}>Stripboard</button>
     </div>
 
-    <div class="flex mt-6 justify-center gap-5 w-full">
-      <button class="btn flex-1 max-w-48" onclick={handleUploadFile}>📁 Upload SPICE</button>
+    <div class="flex mt-12 justify-center gap-5 w-full">
+      <button class="btn btn-lg flex-1 max-w-72" onclick={handleUploadFile}>📁 Upload SPICE</button>
       <div class="w-px bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
-      <button class="btn flex-1 max-w-48" onclick={() => handleCreateFromScratch(selectedTab)}>✨ Create from Scratch</button>
+      <button class="btn btn-lg flex-1 max-w-72" onclick={() => handleCreateFromScratch(selectedTab)}>✨ Create from Scratch</button>
     </div>
 
     <input 

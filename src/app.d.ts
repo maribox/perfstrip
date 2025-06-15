@@ -9,6 +9,13 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
+		type ItemType = string
+
+		type PlacedItem = {
+			type: ItemType,
+			padCoordinates: [number, number],
+			
+		}
 	}
 }
 

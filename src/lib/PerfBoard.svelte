@@ -1,55 +1,57 @@
 <script lang="ts">
+  interface Props {
+    "numRows" : number,
+    "numCols" : number
+  }
+  let props: Props = $props()
 
+  const PAD_SPACING = 8
+  const SIDE_PADDING = 20
+  const PAD_RADIUS = 12
 
-  let paneWidth = $state(0)
-  let lastHovered : {row: number, col: number} = $state({row: 0, col: 0})
-  let perfboardSelected : boolean[][] = $derived.by(() => {
-    let numRows = 10
-    let numCols = Math.floor(paneWidth / 17) || 1
-    let holes = Array.from(Array(numRows), () => new Array(numCols).fill(false))
-    for (let row = 0; row <= lastHovered.row; row++) {
-      for (let col = 0; col <= lastHovered.col; col++) {
-        holes[row][col] = true
-      }
-    }
-    return holes
-  })
-
+  const padDimension = (PAD_RADIUS*2 + PAD_SPACING)
+  
+  let idealWidth = $derived(SIDE_PADDING * 2 + props.numCols * padDimension)
+  let idealHeight = $derived(SIDE_PADDING * 2 + props.numRows * padDimension)
+  
+  let maxWidth = $derived(typeof window !== 'undefined' ? window.innerWidth * 0.6 : 800)
+  let maxHeight = $derived(typeof window !== 'undefined' ? window.innerHeight * 0.6 : 600)
+  
+  // if either width > maxWidth or height > maxHeight, we nee to scale appropriately so that the actual width/height is maxwidth/maxheight (depending on which is crossing the limit, but everything should be scaled equally)
+  let scale = $derived(Math.min(1, maxWidth / idealWidth, maxHeight / idealHeight))
+  
+  let svgWidth = $derived(idealWidth * scale)
+  let svgHeight = $derived(idealHeight * scale)
+  let scaledPadding = $derived(SIDE_PADDING * scale)
+  let scaledSpacing = $derived(padDimension * scale)
+  let scaledPadRadius = $derived(PAD_RADIUS * scale)
+  let scaledHoleRadius = $derived(PAD_RADIUS * scale * 0.6)
 </script>
-<div class="w-[60vw] h-[80vh] rounded-lg shadow-lg  p-4 flex items-center justify-center"
-  bind:clientWidth={paneWidth}
+
+<svg 
+  width={svgWidth} 
+  height={svgHeight} 
+  viewBox="0 0 {svgWidth} {svgHeight}"
 >
-    <svg width={paneWidth} height="200" viewBox="0 0 {paneWidth} 200">
-      <!-- PCB Background -->
-      <rect width={paneWidth} height="200" fill="#152347" />
-      
-      {#each perfboardSelected as row, rowI}
-        {#each row as col, colI}
-        <rect 
-            x={8 + colI * 16}
-            y={8 + rowI * 16}
-            width="24"
-            height="24"
-            fill="transparent"
-            role="button"
-            tabindex="0"
-            onmouseenter={() => lastHovered = {row: rowI, col: colI}}
-          />
-          <!-- Copper pad -->
-          <circle 
-            cx={20 + colI * 16} 
-            cy={20 + rowI * 16} 
-            r="6" 
-            fill={col ? "#CD7F32" : "gray"}
-          />
-          <!-- Drill hole -->
-          <circle 
-            cx={20 + colI * 16} 
-            cy={20 + rowI * 16} 
-            r="2" 
-            fill="#1a1a1a"
-          />
-        {/each}
-      {/each}
-    </svg>
-</div>
+  <!-- PCB Background -->
+  <rect width={svgWidth} height={svgHeight} fill="#152347" />
+  
+  {#each Array(props.numRows) as _, rowI}
+    {#each Array(props.numCols) as _, colI}
+      <!-- Copper pad -->
+      <circle 
+        cx={scaledPadding + colI * scaledSpacing + scaledSpacing * .5} 
+        cy={scaledPadding + rowI * scaledSpacing + scaledSpacing * .5} 
+        r={scaledPadRadius}
+        fill="#CD7F32"
+      />
+      <!-- Drill hole -->
+      <circle 
+        cx={scaledPadding + colI * scaledSpacing + scaledSpacing * .5} 
+        cy={scaledPadding + rowI * scaledSpacing + scaledSpacing * .5} 
+        r={scaledHoleRadius}
+        fill="#1a1a1a"
+      />
+    {/each}
+  {/each}
+</svg>

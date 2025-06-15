@@ -1,0 +1,30 @@
+* SpiceNetList
+* 
+* Exported from einfache_schaltung_test1.sch at 14.06.2025 17:19
+* 
+* EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
+* 
+.TEMP=25.000000
+* --------- .OPTIONS ---------
+* --------- .PARAMS ---------
+
+* --------- devices ---------
+R_R1 N_2 N_1 
+_G1 0 
+_LED1 0 
+
+* --------- simulation ---------
+.print DC 
+.print AC 
+.print TRAN 
+.END
+
+
+
+
+
+
+
+
+
+

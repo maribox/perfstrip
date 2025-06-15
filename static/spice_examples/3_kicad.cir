@@ -1,0 +1,10 @@
+.title KiCad schematic
+Q1 __Q1
+R1 Net-_Q2-G_ /ww 150
+R2 Net-_Q1-G_ /cw 150
+U1 __U1
+Q2 __Q2
+R4 GND Net-_Q1-G_ 100k
+J1 __J1
+R3 GND Net-_Q2-G_ 100k
+.end
