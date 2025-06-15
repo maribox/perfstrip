@@ -6,8 +6,15 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  converter: {}
+
+  core:
     dependencies:
+      converter:
+        specifier: workspace:^
+        version: link:../converter
       unplugin-icons:
         specifier: ^22.1.0
         version: 22.1.0(svelte@5.34.1)

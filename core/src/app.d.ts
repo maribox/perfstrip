@@ -9,12 +9,17 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
-		type ItemType = string
+
+		type Point = [number, number]
+
+		type ItemType = {
+			name: string,
+			pinCoordinates: Point[]
+		}
 
 		type PlacedItem = {
 			type: ItemType,
-			padCoordinates: [number, number],
-			
+			padCoordinates: Point,
 		}
 	}
 }

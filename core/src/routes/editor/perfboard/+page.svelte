@@ -1,12 +1,13 @@
 <script>
   import PerfBoard from "$lib/PerfBoard.svelte";
 
-
   try {
     let spice = localStorage.getItem("uploadedSpice");
-    console.log(spice);
-    
-
+    if (spice) {
+      console.log(spice.split("\n").filter(line => line));
+    } else {
+      console.log("No SPICE file found in localStorage");
+    }
   } catch {
     console.log("failed to get SPICE file");
   }
