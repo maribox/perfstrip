@@ -9,9 +9,15 @@ const config = {
 		adapter: adapter({
 			ssr: false,
 			prerender: {
-				default: true
-			}
-		})
+				default: true,
+			},
+			fallback: "200.html" // depends on the static host -> look at what docs say/set in the config
+		}),
+		
+		// gets sent to TS and Vite
+		alias: {
+			'xtoedif': '../libs/xtoedif/src/index.ts'
+		}
 	}
 };
 

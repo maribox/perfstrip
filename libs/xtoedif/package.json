@@ -1,12 +1,33 @@
 {
   "name": "xtoedif",
   "version": "1.0.0",
+  "type": "module",
   "description": "Convert (currently only netlist-)files from KiCad, Eagle etc to EDIF",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p .",
+    "dev": "tsc --watch"
   },
-  "keywords": [],
+  "keywords": [
+    "netlist",
+    "edif",
+    "kicad",
+    "eagle",
+    "convert"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts"
 }
