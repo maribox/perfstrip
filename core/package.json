@@ -27,13 +27,8 @@
 		"typescript": "^5.0.0",
 		"vite": "^6.2.6"
 	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild"
-		]
-	},
 	"dependencies": {
-		"converter": "workspace:^",
-		"unplugin-icons": "^22.1.0"
+		"unplugin-icons": "^22.1.0",
+		"xtoedif": "workspace:^"
 	}
 }

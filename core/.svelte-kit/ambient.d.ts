@@ -181,7 +181,6 @@ declare module '$env/static/private' {
 	export const SYSTEMD_SLEEP_FREEZE_USER_SESSIONS: string;
 	export const __NV_PRIME_RENDER_OFFLOAD: string;
 	export const npm_node_execpath: string;
-	export const npm_config_engine_strict: string;
 	export const OLDPWD: string;
 	export const MODULES_CMD: string;
 	export const TERM_PROGRAM: string;
@@ -371,7 +370,6 @@ declare module '$env/dynamic/private' {
 		SYSTEMD_SLEEP_FREEZE_USER_SESSIONS: string;
 		__NV_PRIME_RENDER_OFFLOAD: string;
 		npm_node_execpath: string;
-		npm_config_engine_strict: string;
 		OLDPWD: string;
 		MODULES_CMD: string;
 		TERM_PROGRAM: string;
