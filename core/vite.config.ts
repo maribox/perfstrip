@@ -2,7 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import Icons from 'unplugin-icons/vite'
-import path from 'path';
+import UnpluginTypia from '@ryoppippi/unplugin-typia/vite'
 
 export default defineConfig({
 	plugins: [
@@ -12,5 +12,6 @@ export default defineConfig({
 			autoInstall: true,
 			compiler: 'svelte'
 		}),
+		UnpluginTypia()
 	],
 });

@@ -5,7 +5,8 @@
   "description": "Convert (currently only netlist-)files from KiCad, Eagle etc to EDIF",
   "scripts": {
     "build": "tsc -p .",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "prepare": "ts-patch install"
   },
   "keywords": [
     "netlist",
@@ -17,7 +18,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "@ryoppippi/unplugin-typia": "^2.6.5",
+    "ts-patch": "^3.3.0",
+    "typescript": "^5.8.3"
   },
   "files": [
     "dist"
@@ -33,6 +36,7 @@
   "dependencies": {
     "@thi.ng/sexpr": "^1.0.19",
     "astq": "^2.8.1",
-    "flat": "^6.0.1"
+    "flat": "^6.0.1",
+    "typia": "^9.3.1"
   }
 }
