@@ -29,5 +29,9 @@
     }
   },
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts"
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@thi.ng/sexpr": "^1.0.19",
+    "astq": "^2.8.1"
+  }
 }

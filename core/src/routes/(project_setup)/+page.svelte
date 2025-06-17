@@ -51,7 +51,7 @@
 
     <input 
       type="file" 
-      accept=".cir" 
+      accept=".cir,.net,." 
       bind:this={fileInput}
       onchange={handleFileChange}
       style="display: none;"
