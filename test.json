@@ -1,0 +1,5967 @@
+[
+  {
+    "type": "expr",
+    "value": "(",
+    "children": [
+      {
+        "type": "sym",
+        "value": "export"
+      },
+
+      {
+        "type": "expr",
+        "value": "(",
+        "children": [
+          {
+            "type": "sym",
+            "value": "libraries"
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "library"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "logical"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Connector"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "uri"
+                  },
+                  {
+                    "type": "str",
+                    "value": "/app/extensions/Library/symbols//Connector.kicad_sym"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "library"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "logical"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Device"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "uri"
+                  },
+                  {
+                    "type": "str",
+                    "value": "/app/extensions/Library/symbols//Device.kicad_sym"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "library"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "logical"
+                  },
+                  {
+                    "type": "str",
+                    "value": "RF_Module"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "uri"
+                  },
+                  {
+                    "type": "str",
+                    "value": "/app/extensions/Library/symbols//RF_Module.kicad_sym"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "library"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "logical"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Transistor_FET"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "uri"
+                  },
+                  {
+                    "type": "str",
+                    "value": "/app/extensions/Library/symbols//Transistor_FET.kicad_sym"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "expr",
+        "value": "(",
+        "children": [
+          {
+            "type": "sym",
+            "value": "nets"
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "1"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "/cw"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "R2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "27"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO16"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "2"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "/ww"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "R1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "28"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO17"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "3"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "GND"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "J1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Pin_2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Q1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "S"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Q2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "S"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "R3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "R4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "4"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Net-(J1-Pin_1)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "J1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Pin_1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "VDD"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "power_in"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "5"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Net-(J1-Pin_3)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "J1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Pin_3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Q1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "D"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "6"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Net-(J1-Pin_4)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "J1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Pin_4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Q2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "D"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "7"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Net-(Q1-G)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Q1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "G"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "input"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "R2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "R4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "8"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Net-(Q2-G)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "Q2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "G"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "input"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "R1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "R3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "9"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Net-(U1-GND-Pad1)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "GND"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "power_in"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "15"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "GND"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "38"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "GND"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "39"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "GND"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "passive"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "10"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-EN-Pad3)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "EN"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "input"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "11"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO0-Pad25)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "25"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO0"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "12"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO2-Pad24)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "24"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "13"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO4-Pad26)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "26"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "14"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO5-Pad29)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "29"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO5"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "15"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO12-Pad14)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "14"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "16"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO13-Pad16)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "16"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO13"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "17"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO14-Pad13)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "13"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO14"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "18"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO15-Pad23)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "23"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO15"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "19"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO18-Pad30)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "30"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO18"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "20"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO19-Pad31)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "31"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO19"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "21"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO21-Pad33)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "33"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO21"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "22"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO22-Pad36)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "36"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO22"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "23"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO23-Pad37)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "37"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO23"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "24"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO25-Pad10)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "10"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO25"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "25"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO26-Pad11)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "11"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO26"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "26"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO27-Pad12)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "12"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO27"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "27"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO32-Pad8)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "8"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO32"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "28"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO33-Pad9)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "9"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO33"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "29"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO34-Pad6)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "6"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO34"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "input"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "30"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-IO35-Pad7)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "7"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "IO35"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "input"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "31"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-NC-Pad32)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "32"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "NC"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "no_connect"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "32"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-RXD0{slash}IO3-Pad34)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "34"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "RXD0/IO3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "33"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-SCK{slash}CLK-Pad20)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "20"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "SCK/CLK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "34"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-SCS{slash}CMD-Pad19)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "19"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "SCS/CMD"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "35"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-SDI{slash}SD1-Pad22)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "22"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "SDI/SD1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "36"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-SDO{slash}SD0-Pad21)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "21"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "SDO/SD0"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "37"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-SENSOR_VN-Pad5)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "5"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "SENSOR_VN"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "input"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "38"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-SENSOR_VP-Pad4)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "4"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "SENSOR_VP"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "input"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "39"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-SHD{slash}SD2-Pad17)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "17"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "SHD/SD2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "40"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-SWP{slash}SD3-Pad18)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "18"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "SWP/SD3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expr",
+            "value": "(",
+            "children": [
+              {
+                "type": "sym",
+                "value": "net"
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "code"
+                  },
+                  {
+                    "type": "str",
+                    "value": "41"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "name"
+                  },
+                  {
+                    "type": "str",
+                    "value": "unconnected-(U1-TXD0{slash}IO1-Pad35)"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "class"
+                  },
+                  {
+                    "type": "str",
+                    "value": "Default"
+                  }
+                ]
+              },
+              {
+                "type": "expr",
+                "value": "(",
+                "children": [
+                  {
+                    "type": "sym",
+                    "value": "node"
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "ref"
+                      },
+                      {
+                        "type": "str",
+                        "value": "U1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pin"
+                      },
+                      {
+                        "type": "str",
+                        "value": "35"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pinfunction"
+                      },
+                      {
+                        "type": "str",
+                        "value": "TXD0/IO1"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expr",
+                    "value": "(",
+                    "children": [
+                      {
+                        "type": "sym",
+                        "value": "pintype"
+                      },
+                      {
+                        "type": "str",
+                        "value": "bidirectional"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -21,7 +21,8 @@
         (comment (number "8") (value ""))
         (comment (number "9") (value "")))))
   (components
-    (comp (ref "J1")
+    (comp 
+      (ref "J1")
       (value "Screw_Terminal_01x04")
       (footprint "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal")
       (description "Generic screw terminal, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)")
@@ -145,7 +146,9 @@
       (sheetpath (names "/") (tstamps "/"))
       (tstamps "30c6aafc-d225-45dc-b836-d34afac7995e")))
   (libparts
-    (libpart (lib "Connector") (part "Screw_Terminal_01x04")
+    (libpart 
+      (lib "Connector") 
+      (part "Screw_Terminal_01x04")
       (description "Generic screw terminal, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)")
       (docs "~")
       (footprints

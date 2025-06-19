@@ -34,7 +34,9 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "@sinclair/typebox": "^0.34.35",
     "@thi.ng/sexpr": "^1.0.19",
+    "ajv": "^8.17.1",
     "astq": "^2.8.1",
     "flat": "^6.0.1",
     "typia": "^9.3.1"
