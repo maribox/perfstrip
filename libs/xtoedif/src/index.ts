@@ -1,40 +1,29 @@
-import { parse, ASTNode, Root, Expression, INode, Sym } from "@thi.ng/sexpr";
-import typia from "typia";
-import { parseKiCad } from "./kicadparsers.js";
+import { parseKiCad, type KiCadExport } from "./kicadparsers.js";
 
-export type PartType = "resistor" | ""
+export type KiCadComponent = KiCadExport["components"][string];
+export type Part = {comp: KiCadComponent, netRefs: number[], pinCount: number}
 
-export interface Part {
-  ref: string,
-  pins: Map<number, Pin>
-  type?: PartType,
-}
 
-export interface Pin {
-  ref: string;
-  pinNumber: number;
-  pintype?: string;
-  pinfunction?: string;
-}
-
-export interface Net {
-  code: string;
-  name: string;
-  class: string;
-  connections: Pin[];
-}
-
-export function convertKicadToEdif(netlistContent: string): string {
+export function convertKicadToParts(netlistContent: string): Record<string, Part> {
   const doc = parseKiCad(netlistContent);
-  console.log(doc);
-
+  
   let parts : Record<string, Part> = {}
   
+  for (let net of doc.nets) {
+    for (let connection of net.connections) {
+      if (!parts[connection.ref]) {
+        parts[connection.ref] = {
+          comp: doc.components[connection.ref],
+          netRefs: [],
+          pinCount: 0
+        }
+      }
+      parts[connection.ref].pinCount++;
+      parts[connection.ref].netRefs.push(net.code);
+    }
+  } 
 
-  //console.log(parts);
-  
-
-  return ""
+  return parts
 }
 
 

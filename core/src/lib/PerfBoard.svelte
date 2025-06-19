@@ -1,7 +1,8 @@
 <script lang="ts">
   interface Props {
     "numRows" : number,
-    "numCols" : number
+    "numCols" : number,
+    
   }
   let props: Props = $props()
 

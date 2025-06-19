@@ -1,17 +1,23 @@
-<script>
+<script lang="ts">
   // note: if we execute the spice stuff onMount, we might get a small delay, but using if (browser) doesn't work with adapter-static 
   import { browser } from "$app/environment";
 
   import PerfBoard from "$lib/PerfBoard.svelte";
-  import {convertKicadToEdif} from "xtoedif"
+  import {convertKicadToParts, type Part} from "xtoedif"
+
+  type Point = [number, number]
+  type PlacedPart = {
+    part: Part;
+    position: Point;
+    width: number;
+    height: number;
+  }
 
   if (browser) {
-    console.log("only on the client!")
   try {
     let spice = localStorage.getItem("uploadedSpice");
     if (spice) {
-      //console.log(spice.split("\n").filter(line => line));
-      console.log(convertKicadToEdif(spice));
+      let parts = convertKicadToParts(spice);
       
     } else {
       console.log("No SPICE file found in localStorage");
