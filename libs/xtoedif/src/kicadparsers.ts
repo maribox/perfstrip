@@ -31,7 +31,7 @@ const Design = Type.Object({
 const ComponentBase = Type.Object({
   ref: Type.String(),
   value: Type.Optional(Type.String()),
-  footprint: Type.Optional(Type.String()),
+  footprint: Type.String(), // TODO: is optional
   datasheet: Type.Optional(Type.String()),
   description: Type.Optional(Type.String()),
   fields: Type.Array(Field),

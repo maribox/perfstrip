@@ -2,7 +2,7 @@
   interface Props {
     "numRows" : number,
     "numCols" : number,
-    
+    "placedParts" : App.PlacedPart[]
   }
   let props: Props = $props()
 
@@ -36,7 +36,7 @@
 >
   <!-- PCB Background -->
   <rect width={svgWidth} height={svgHeight} fill="#152347" />
-  
+  <g>
   {#each Array(props.numRows) as _, rowI}
     {#each Array(props.numCols) as _, colI}
       <!-- Copper pad -->
@@ -54,5 +54,16 @@
         fill="#1a1a1a"
       />
     {/each}
+  {/each}
+  </g>
+
+  {#each props.placedParts as part}
+      <image
+  href={`/fritzing-parts/svg/core/breadboard/${part.fritzing_name}.svg`}
+  x={part.position[1] * padDimension}
+  y={part.position[0] * padDimension}
+  preserveAspectRatio="xMidYMid meet"
+/>
+
   {/each}
 </svg>

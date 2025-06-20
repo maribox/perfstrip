@@ -12,16 +12,15 @@ declare global {
 
 		type Point = [number, number]
 
-		type ItemType = {
-			name: string,
-			pinCoordinates: Point[]
-		}
+		export type PlacedPart = {
+			part: Part;
+			position: Point;
+			width: number;
+			height: number;
+			fritzing_name: string
 
-		type PlacedItem = {
-			type: ItemType,
-			padCoordinates: Point,
 		}
 	}
 }
 
-export {};
+export { };

@@ -1,0 +1,6 @@
+[submodule "core/static/pcbdraw-lib"]
+	path = core/static/pcbdraw-lib
+	url = git@github.com:maribox/PcbDraw-Lib.git
+[submodule "core/static/fritzing-parts"]
+	path = core/static/fritzing-parts
+	url = https://github.com/fritzing/fritzing-parts.git
