@@ -17,8 +17,7 @@ declare global {
 			position: Point;
 			width: number;
 			height: number;
-			fritzing_name: string
-
+			lib_name: [string, string]
 		}
 	}
 }
