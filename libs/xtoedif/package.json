@@ -18,7 +18,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@ryoppippi/unplugin-typia": "^2.6.5",
     "ts-patch": "^3.3.0",
     "typescript": "^5.8.3"
   },

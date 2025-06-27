@@ -1,8 +1,10 @@
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+
 import Icons from 'unplugin-icons/vite'
-import UnpluginTypia from '@ryoppippi/unplugin-typia/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 export default defineConfig({
 	plugins: [
@@ -10,8 +12,15 @@ export default defineConfig({
 		sveltekit(),
 		Icons({
 			autoInstall: true,
-			compiler: 'svelte'
+			compiler: 'svelte',
 		}),
-		UnpluginTypia()
+		AutoImport({
+			resolvers: [
+				IconsResolver({
+					prefix: 'Icon'
+				})
+			],
+			dts: './src/auto-imports.d.ts'
+		}),
 	],
 });

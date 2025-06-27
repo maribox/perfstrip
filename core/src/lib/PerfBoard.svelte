@@ -1,8 +1,8 @@
 <script lang="ts">
   interface Props {
-    "numRows" : number,
-    "numCols" : number,
-    "placedParts" : App.PlacedPart[]
+    numRows : number,
+    numCols : number,
+    placedParts : App.PlacedPart[]
   }
   let props: Props = $props()
 
@@ -58,12 +58,12 @@
   </g>
 
   {#each props.placedParts as part}
-      <image
+      <!-- <image
   href={`/fritzing-parts/svg/core/breadboard/${part.lib_name}.svg`}
   x={part.position[1] * padDimension}
   y={part.position[0] * padDimension}
-  preserveAspectRatio="xMidYMid meet"
-/>
+  preserveAspectRatio="xMidYMid meet" 
+/>-->
 
   {/each}
 </svg>

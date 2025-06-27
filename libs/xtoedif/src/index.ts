@@ -70,7 +70,7 @@ function getPartTypeFromDescription(description?: string): PartType | undefined 
 
 export function convertKicadToParts(netlistContent: string): Record<string, Part> {
   const doc = parseKiCad(netlistContent);
-  
+  console.log(doc)
   let parts : Record<string, Part> = {}
   
   for (let net of doc.nets) {

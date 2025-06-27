@@ -13,11 +13,17 @@ declare global {
 		type Point = [number, number]
 
 		export type PlacedPart = {
-			part: Part;
 			position: Point;
 			width: number;
 			height: number;
-			lib_name: [string, string]
+			lib_name: [string, string];
+			part: Part;
+		}
+
+		export type Pin = {
+			key: string;
+			name: string;
+			position: Point;
 		}
 	}
 }

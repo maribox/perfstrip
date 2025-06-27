@@ -1,14 +1,17 @@
 <script lang="ts">
   import type { Part } from "xtoedif";
-  import Resistor from "virtual:icons/icon-park-outline/resistor"
-  import QuestionMark from "virtual:icons/icon-park-outline/file-question"
-  import Transistor from "virtual:icons/iconoir/electronics-transistor"
-  import Board from "virtual:icons/fluent/developer-board-16-regular"
-  import Bolt from "virtual:icons/lucide/bolt"
   
-  const { parts } : {
+  const { parts, onEditFootprint, onEditMultipleFootprints } : {
     parts: Record<string, Part>;
+    onEditFootprint: (partKey: string, part: Part) => void;
+    onEditMultipleFootprints?: () => void;
   } = $props();
+
+  const hasInvalidFootprints = $derived(() => {
+    return Object.values(parts || {}).some(part => 
+      !part.comp.footprint || part.comp.footprint.trim() === ''
+    );
+  });
 </script>
 
 <div class="overflow-auto">
@@ -17,17 +20,22 @@
     <div class="w-12 flex-shrink-0"></div> <!-- Avatar space -->
     <div class="flex-1 min-w-0 px-2 flex justify-center">
       <h3 class="font-semibold text-sm">Part</h3>
-    </div>
-    <div class="w-42 flex-shrink-0 pl-2">
-      <div class="flex flex-col items-center gap-1">
-        <h3 class="font-semibold text-sm">Footprint</h3>
-        {#if true}
-          <button class="btn btn-xs btn-success my-2">
-            Fix all footprints
-          </button>
-        {/if}
+    </div>      <div class="w-42 flex-shrink-0 pl-2">
+        <div class="flex flex-col items-center gap-1">
+          <h3 class="font-semibold text-sm">Footprint</h3>
+          {#if parts}
+            {@const invalidParts = Object.entries(parts).filter(([_, part]) => !part.comp.footprint || part.comp.footprint.trim() === '')}
+            {#if invalidParts.length > 0}
+              <button 
+                class="btn btn-xs btn-warning my-2"
+                onclick={() => onEditMultipleFootprints?.()}
+              >
+                Fix {invalidParts.length} invalid footprint{invalidParts.length > 1 ? 's' : ''}
+              </button>
+            {/if}
+          {/if}
+        </div>
       </div>
-    </div>
   </div>
 
   {#if parts}
@@ -39,13 +47,14 @@
             <div class="bg-base-300 text-base-content rounded-full w-12 h-12 relative">
               <div class="w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
                 {#if part.type === "Resistor"}
-                  <Resistor class="w-full h-full"/>
+                  <IconIconParkOutlineResistor class="w-full h-full"/>
                 {:else if part.type === "Transistor"}
-                  <Transistor class="w-full h-full"/>
+                  <IconIconoirElectronicsTransistor class="w-full h-full"/>
                 {:else if part.type === "Board"}
-                  <Board class="w-full h-full"/>
+                  <!-- <Board class="w-full h-full"/> -->
+                  <IconFluentDeveloperBoard16Regular class="w-full h-full"/>
                 {:else}
-                  <QuestionMark class="w-full h-full"/>
+                  <IconIconParkOutlineFileQuestion class="w-full h-full"/>
                 {/if}
               </div>
             </div>
@@ -60,11 +69,12 @@
           </div>
           <div class="w-42 flex-shrink-0 pl-2">
             <button
-              class="btn btn-sm btn-outline w-full px-3 py-1 bg-base-300 rounded-md {!part.footprint ?'border-red-700' : ''}"
-              title={part.comp.footprint ?? ''}
+              class="btn btn-sm btn-outline w-full px-3 py-1 bg-base-300 rounded-md {!part.comp.footprint ?'border-red-700' : ''}"
+              title={part.comp.footprint ?? 'Click to set footprint'}
+              onclick={() => onEditFootprint?.(key, part)}
             >
               <span class="text-xs truncate block w-full">
-                {part.comp.footprint?.split(":")[0] ?? ''}
+                {part.comp.footprint?.split(":")[0] ?? 'Set footprint'}
               </span>
             </button>
           </div>

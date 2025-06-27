@@ -6,7 +6,6 @@
     "declaration": true,
     "plugins": [
       {
-        "transform": "typia/lib/transform"
       }
     ],
     "skipLibCheck": true,

@@ -1,13 +1,10 @@
 <script lang="ts">
 	import '../app.css';
-	import Menu from "virtual:icons/material-symbols/menu"
-	import More from "virtual:icons/material-symbols/more-horiz"
-	import GitHub from "virtual:icons/mdi/github"
 	
 	let { children } = $props();
 </script>
 <div class = "min-h-screen w-full flex flex-col">
-<div class="navbar bg-base-100 shadow-sm">
+<div class="navbar bg-base-200 shadow-sm">
   <div class="flex-none">
     <!-- <button class="btn btn-square btn-ghost">
 			<Menu class="inline-block h-7 w-7" />
@@ -18,7 +15,7 @@
 	</a>
   <div class="flex-none">
 		<a class="btn btn-square btn-ghost" href="https://github.com/maribox/perfstrip">
-			<GitHub class="inline-block h-7 w-7"/>
+			<IconMdiGithub class="inline-block h-7 w-7"/>
 		</a>
     <!-- <button class="btn btn-square btn-ghost">
       <More class="inline-block h-7 w-7"/>
