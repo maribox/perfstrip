@@ -1,2 +1,11 @@
 @import 'tailwindcss';
 @plugin "daisyui";
+
+@theme {
+  --animate-blink-bg: blink-bg 1.5s ease-in-out infinite;
+
+  @keyframes blink-bg {
+    0%, 100% { background-color: var(--color-base-100); }
+    50%      { background-color: var(--color-base-200); }
+  }
+}

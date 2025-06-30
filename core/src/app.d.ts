@@ -16,7 +16,7 @@ declare global {
 			position: Point;
 			width: number;
 			height: number;
-			lib_name: [string, string];
+			image: [string, string];
 			part: Part;
 		}
 

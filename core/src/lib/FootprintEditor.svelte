@@ -11,9 +11,9 @@
 
   const { onClose, onOk, parts }: Props = $props();
 
-  let currentPartIndex = $state(0);
+  let currentPartKey = $state(Object.keys(parts)[0]);
   // TODO fix undefined
-  let currentPart: Part | undefined = $derived(parts[currentPartIndex]);
+  let currentPart: Part = $derived(parts[currentPartKey]);
 </script>
 
 <div class="fixed inset-0 bg-black opacity-50"></div>
@@ -36,7 +36,7 @@
           <input
             type="text"
             bind:value={
-              () => currentPart.footprint?.name ?? "",
+              () => currentPart.footprint?.libName ?? "",
               (v) => {
                 currentPart.footprint ??= { name: "", layout: {type: "fixed", pins: []} };
                 currentPart.footprint.name = v;

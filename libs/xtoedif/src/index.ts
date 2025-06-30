@@ -22,7 +22,6 @@ export type FixedFootprint = {
 
 export type Footprint = { 
   name: string;
-  libName?: string;
   layout: FixedFootprint | VariableFootprint;
 }
 
@@ -30,7 +29,7 @@ export type PartType = "Resistor" | "Board" | "Transistor"
 
 export const DEFAULT_FOOTPRINTS: Partial<Record<PartType, Footprint>> = {
   "Resistor": {
-    name: "resistor_default",
+    name: "2-Pin Resistor",
     layout: {
       type: "variable",
       minLength: 3,
@@ -38,7 +37,7 @@ export const DEFAULT_FOOTPRINTS: Partial<Record<PartType, Footprint>> = {
     }
   },
   "Transistor": {
-    name: "transistor_to220",
+    name: "TO220 Transistor",
     layout: {
       type: "fixed",
       pins: [
