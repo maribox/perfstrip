@@ -1,5 +1,6 @@
 import { parseKiCad, type KiCadExport } from "./kicadparsers.js";
 
+export { parseKiCad };
 export type KiCadComponent = KiCadExport["components"][string];
 
 export type PinPosition = {
@@ -49,7 +50,24 @@ export const DEFAULT_FOOTPRINTS: Partial<Record<PartType, Footprint>> = {
   }
 };
 
-export type Part = {comp: KiCadComponent, name: string, description: string, type?: PartType, netRefs: number[], pinCount: number, footprint?: Footprint}
+export interface PartPin {
+  pinNumber: string | number;
+  name: string;
+  pinFunction?: string;
+  pinType?: string;
+  netCode?: number;
+}
+
+export type Part = {
+  comp: KiCadComponent, 
+  name: string, 
+  description: string, 
+  type?: PartType, 
+  netRefs: number[], 
+  pinCount: number, 
+  footprint?: Footprint,
+  pins?: PartPin[]
+}
 
 function getPartTypeFromDescription(description?: string): PartType | undefined {
   if (!description) return undefined;

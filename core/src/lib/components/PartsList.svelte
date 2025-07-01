@@ -1,12 +1,10 @@
 <script lang="ts">
   import type { Part } from "xtoedif";
-
-  export type FootprintEditState = {
-    partKeyQueue: string[]
-  }
-
-  export type OnEditFootprintFunction = (partKey: string) => void;
-  export type OnEditMultipleFootprintsFunction = (...partKeys: string[]) => void;
+  import type { 
+    FootprintEditState,
+    OnEditFootprintFunction,
+    OnEditMultipleFootprintsFunction 
+  } from "$lib/types";
 
   const {
     parts,

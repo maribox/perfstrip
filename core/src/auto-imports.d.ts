@@ -6,17 +6,10 @@
 // biome-ignore lint: disable
 export {}
 declare global {
-  const IconClarityResistorLine: typeof import('~icons/clarity/resistor-line')['default']
   const IconFluentDeveloperBoard16Regular: typeof import('~icons/fluent/developer-board16-regular')['default']
   const IconIconParkOutlineFileQuestion: typeof import('~icons/icon-park-outline/file-question')['default']
   const IconIconParkOutlineResistor: typeof import('~icons/icon-park-outline/resistor')['default']
   const IconIconoirElectronicsTransistor: typeof import('~icons/iconoir/electronics-transistor')['default']
   const IconLucideEdit: typeof import('~icons/lucide/edit')['default']
-  const IconMaterialSymbolsCancelOutline: typeof import('~icons/material-symbols/cancel-outline')['default']
-  const IconMaterialSymbolsEditOutline: typeof import('~icons/material-symbols/edit-outline')['default']
-  const IconMdiCancel: typeof import('~icons/mdi/cancel')['default']
-  const IconMdiCheck: typeof import('~icons/mdi/check')['default']
-  const IconMdiClose: typeof import('~icons/mdi/close')['default']
   const IconMdiGithub: typeof import('~icons/mdi/github')['default']
-  const IconSystemUiconsCross: typeof import('~icons/system-uicons/cross')['default']
 }
