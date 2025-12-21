@@ -10,6 +10,7 @@
     NetworkInfo,
     PinInfo
   } from "$lib/types";
+  type PinRow = PartPin & { isPlaced: boolean; isSkipped?: boolean; pinFunction?: string };
 
   interface Props {
     perfboardCols: number;
@@ -22,7 +23,7 @@
     parsedKiCadDoc: any;
     availableFootprints: string[];
     currentPart: Part | null;
-    currentPartPins: PartPin[];
+    currentPartPins: PinRow[];
     nextPinToPlace: PinInfo | null;
     highlightedPin: PinInfo | null;
     allPinsPlaced: boolean;
@@ -47,6 +48,8 @@
     onSkipNextConnectedPin: () => void;
     hideDisconnectedPins: boolean;
     onToggleHideDisconnectedPins: () => void;
+    groupConnectedPins: boolean;
+    onToggleGroupConnectedPins: () => void;
     onClearAllBodies: () => void;
     onRemoveBody: (index: number) => void;
     handlePadClick: (x: number, y: number) => void;
@@ -90,6 +93,8 @@
     onSkipNextConnectedPin,
     hideDisconnectedPins,
     onToggleHideDisconnectedPins,
+    groupConnectedPins,
+    onToggleGroupConnectedPins,
     onClearAllBodies,
     onRemoveBody,
     handlePadClick,
@@ -143,6 +148,8 @@
       {onSkipNextConnectedPin}
       {hideDisconnectedPins}
       {onToggleHideDisconnectedPins}
+      {groupConnectedPins}
+      {onToggleGroupConnectedPins}
       {componentBodies}
       {onClearAllBodies}
       {onRemoveBody}

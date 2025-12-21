@@ -144,7 +144,7 @@
       </div>
       
       <div class="w-full">
-        <label class="block text-sm font-medium mb-1">Type</label>
+        <div class="block text-sm font-medium mb-1">Type</div>
         <div class="join w-full">
           <button 
             class="btn btn-sm join-item flex-1 {currentFootprint.layout.type === 'fixed' ? 'btn-primary' : 'btn-outline'}" 

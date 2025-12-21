@@ -1,5 +1,6 @@
 <script lang="ts">
   import { browser } from "$app/environment";
+  import { DEFAULT_FOOTPRINTS } from "xtoedif";
   import { getNetworkForPin, initializeFromSpice } from "$lib/utils";
   import PerfboardOverview from "./PerfboardOverview.svelte";
   import PerfboardEditorOverlay from "./PerfboardEditorOverlay.svelte";
@@ -17,11 +18,9 @@
     Part,
     PinPosition 
   } from "$lib/types";
-
   let placedParts: App.PlacedPart[] = $state([]);
   let parts: Record<string, Part> = $state({});
   let parsedKiCadDoc: any = $state(null);
-
   let perfboardCols = $state(8);
   let perfboardRows = $state(8);
   let boardSizeManuallySet = $state(false);
@@ -31,17 +30,17 @@
   let highlightedPin = $state(null as any);
   let forcedPinNumber = $state(null as string | number | null);
   let skippedPinNumbers: Array<string | number> = $state([]);
-  let hideDisconnectedPins = $state(false);
+  let hideDisconnectedPins = $state(true);
+  let groupConnectedPins = $state(true);
   let autoBodyEnabled = $state(true);
-
   let footprintEditState: FootprintEditState = $state({
     partKeyQueue: [],
     currentFootprint: {
-      name: "Default",
+      name: "",
       layout: { type: "fixed", pins: [] },
     },
   });
-
+  let activePartKey = $state(null as string | null);
   const derivedState = $derived.by(() =>
     computeDerivedState({
       parts,
@@ -54,17 +53,24 @@
       getNetworkForPin
     })
   );
-
+  const getPinsToPlace = () => {
+    const nextPin = derivedState.nextPinToPlace;
+    if (!nextPin) return [];
+    if (!groupConnectedPins || !derivedState.currentPartKey) return [nextPin];
+    const network = getNetworkForPin(parts, derivedState.currentPartKey, nextPin.pinNumber, parsedKiCadDoc);
+    if (!network || network.netName === "No net" || network.netCode == null) return [nextPin];
+    return derivedState.currentPartPins.filter(
+      (pin) => pin.netCode === network.netCode && !pin.isPlaced
+    );
+  };
   const isSamePinList = (left: Array<string | number>, right: Array<string | number>) => {
     if (left.length !== right.length) return false;
     return left.every((value, index) => value == right[index]);
   };
-
   const removeBody = (index: number) => {
     autoBodyEnabled = false;
     componentBodies = componentBodies.filter((item, i) => i !== index);
   };
-
   const {
     handlePadClick,
     handleBodyDrag,
@@ -77,9 +83,9 @@
     resetEditingState
   } = createEditorActions({
     getLayoutType: () => footprintEditState.currentFootprint.layout.type,
-    setLayoutPins: (pins) => { footprintEditState.currentFootprint.layout.pins = pins; },
+    setLayoutPins: (pins) => { if (footprintEditState.currentFootprint.layout.type === "fixed") footprintEditState.currentFootprint.layout.pins = pins; },
     getCurrentPartKey: () => derivedState.currentPartKey,
-    getNextPinToPlace: () => derivedState.nextPinToPlace,
+    getPinsToPlace,
     getSelectedPins: () => selectedPins,
     setSelectedPins: (pins) => { selectedPins = pins; },
     setHighlightedPin: (pin) => { highlightedPin = pin; },
@@ -92,34 +98,31 @@
     getPerfboardCols: () => perfboardCols,
     getPerfboardRows: () => perfboardRows,
     getFilteredUnplacedPins: () => derivedState.filteredUnplacedPins,
+    getGroupConnectedPins: () => groupConnectedPins,
+    getNetworkForPin: (partKey: string, pinNumber: string | number) => getNetworkForPin(parts, partKey, pinNumber, parsedKiCadDoc),
     getVariableFootprintSettings: () => variableFootprintSettings,
     setVariableFootprintSettings: (value) => { variableFootprintSettings = value; },
     setLayout: (layout) => { footprintEditState.currentFootprint.layout = layout; }
   });
-
   const clearAllBodies = () => {
     autoBodyEnabled = false;
     componentBodies = [];
   };
-
   const setSelectedPins = (pins: PinPosition[]) => {
     selectedPins = pins;
     if (footprintEditState.currentFootprint.layout.type === "fixed") {
       footprintEditState.currentFootprint.layout.pins = selectedPins;
     }
   };
-
   const setComponentBodies = (bodies: ComponentBody[]) => {
     componentBodies = bodies;
   };
-
   $effect(() => {
     if (footprintEditState.currentFootprint.layout.type === "variable") {
       footprintEditState.currentFootprint.layout.minLength = variableFootprintSettings.minLength;
       footprintEditState.currentFootprint.layout.maxLength = variableFootprintSettings.maxLength;
     }
   });
-
   $effect(() => {
     if (!derivedState.currentPartKey || boardSizeManuallySet) return;
     const pinCount = derivedState.currentPartPins.length;
@@ -129,24 +132,27 @@
       perfboardRows = size;
     }
   });
-
   const applyReset = () => {
     const nextBoardSize = resetEditingState();
     boardSizeManuallySet = nextBoardSize;
   };
-
   const onEditFootprint: OnEditFootprintFunction = (partKey: string) => {
-    footprintEditState.partKeyQueue.push(partKey);
+    footprintEditState.partKeyQueue = [partKey];
+  };
+  $effect(() => {
+    const nextKey = footprintEditState.partKeyQueue[0] ?? null;
+    if (!nextKey || nextKey === activePartKey) return;
+    activePartKey = nextKey;
     applyReset();
     const initState = initFootprintEditForPart({
-      part: parts[partKey] ?? null,
+      part: parts[nextKey] ?? null,
+      defaultFootprints: Object.values(DEFAULT_FOOTPRINTS),
       variableFootprintSettings
     });
     footprintEditState.currentFootprint = initState.currentFootprint;
     selectedPins = initState.selectedPins;
     variableFootprintSettings = initState.variableFootprintSettings;
-  };
-
+  });
   const { selectPinToPlace, skipNextPin, skipToNextConnectedPin } = createPinFlowActions({
     getCurrentPartKey: () => derivedState.currentPartKey,
     getCurrentPartPins: () => derivedState.currentPartPins,
@@ -160,7 +166,6 @@
     setSkippedPinNumbers: (value) => { skippedPinNumbers = value; },
     setHighlightedPin: (value) => { highlightedPin = value; }
   });
-
   $effect(() => {
     if (footprintEditState.currentFootprint.layout.type !== "fixed") return;
     if (!derivedState.currentPartKey || !derivedState.nextPinToPlace) {
@@ -171,19 +176,16 @@
       highlightedPin = { partKey: derivedState.currentPartKey, pinNumber: derivedState.nextPinToPlace.pinNumber };
     }
   });
-
   $effect(() => {
     if (!hideDisconnectedPins || forcedPinNumber == null) return;
     if (!derivedState.isConnectedPin(forcedPinNumber)) {
       forcedPinNumber = null;
     }
   });
-
   $effect(() => {
     if (!autoBodyEnabled) return;
     componentBodies = computeAutoBodies(selectedPins);
   });
-
   $effect(() => {
     if (selectedPins.length === 0) return;
     const cleaned = cleanupSkippedPins({ selectedPins, skippedPinNumbers, forcedPinNumber });
@@ -194,7 +196,6 @@
       forcedPinNumber = cleaned.forcedPinNumber;
     }
   });
-
   const onFinishCurrentFootprint = () => {
     if (derivedState.currentPartKey && parts[derivedState.currentPartKey]) {
       const footprintToSave = { ...footprintEditState.currentFootprint };
@@ -207,20 +208,18 @@
       } else {
         parts[derivedState.currentPartKey].footprint = footprintToSave;
       }
+      parts = { ...parts };
     }
     footprintEditState.partKeyQueue.shift();
     applyReset();
   };
-
   const onCancelCurrentFootprint = () => {
     footprintEditState.partKeyQueue.shift();
     resetEditingState();
   };
-
   const onEditMultipleFootprints: OnEditMultipleFootprintsFunction = (...partKeys: string[]) => {
-    footprintEditState.partKeyQueue.push(...partKeys);
+    footprintEditState.partKeyQueue = [...partKeys];
   };
-
   if (browser) {
     const spice = localStorage.getItem("uploadedSpice");
     const initialData = initializeFromSpice(spice);
@@ -228,7 +227,6 @@
     parsedKiCadDoc = initialData.parsedKiCadDoc;
     placedParts = initialData.placedParts;
   }
-
   const editorProps = $derived.by(() => ({
     perfboardCols,
     perfboardRows,
@@ -260,7 +258,10 @@
     onFootprintNameChange: (name: string) => {
       footprintEditState.currentFootprint.name = name;
     },
-    onLoadExistingFootprint: loadExistingFootprint,
+    onLoadExistingFootprint: (name: string) => {
+      const loaded = loadExistingFootprint(name, parts, Object.values(DEFAULT_FOOTPRINTS));
+      if (loaded) footprintEditState.currentFootprint = loaded;
+    },
     onSwitchFootprintType: switchFootprintType,
     onClearAllPins: clearAllPins,
     onUpdatePinName: updatePinName,
@@ -273,6 +274,8 @@
     onSkipNextConnectedPin: skipToNextConnectedPin,
     hideDisconnectedPins,
     onToggleHideDisconnectedPins: () => hideDisconnectedPins = !hideDisconnectedPins,
+    groupConnectedPins,
+    onToggleGroupConnectedPins: () => groupConnectedPins = !groupConnectedPins,
     onClearAllBodies: clearAllBodies,
     onRemoveBody: removeBody,
     handlePadClick,

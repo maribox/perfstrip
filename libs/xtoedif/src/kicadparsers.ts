@@ -1,5 +1,7 @@
-import { parse as parseSexpr, Expression, ASTNode, Root, Sym, } from "@thi.ng/sexpr";
-import { Type, Static, TObject, TArray, TSchema, } from "@sinclair/typebox";
+import { parse as parseSexpr } from "@thi.ng/sexpr";
+import type { Expression, ASTNode, Root, Sym } from "@thi.ng/sexpr";
+import { Type } from "@sinclair/typebox";
+import type { Static, TObject, TArray, TSchema } from "@sinclair/typebox";
 import AjvRaw from "ajv";
 
 const Pin = Type.Object({

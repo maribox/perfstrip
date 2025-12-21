@@ -21,6 +21,9 @@ export const computeDerivedState = ({
   parsedKiCadDoc: any;
   getNetworkForPin: typeof import("$lib/utils").getNetworkForPin;
 }) => {
+  const currentPartKey = footprintEditState.partKeyQueue[0] ?? null;
+  const currentPart = currentPartKey ? parts[currentPartKey] : null;
+
   const availableFootprints = (() => {
     const unique = new Set<string>();
     Object.values(parts).forEach(part => {
@@ -39,13 +42,13 @@ export const computeDerivedState = ({
   const currentFootprintName = footprintEditState.currentFootprint.name;
   const partsWithSameFootprint = currentFootprintName
     ? Object.entries(parts)
-        .filter(([, part]) => part.footprint?.name === currentFootprintName)
+        .filter(([key, part]) => {
+          if (part.footprint?.name === currentFootprintName) return true;
+          return key === currentPartKey && currentFootprintName.trim() !== "";
+        })
         .map(([key, part]) => ({ key, part }))
     : [];
   const isEditingSharedFootprint = partsWithSameFootprint.length > 1;
-
-  const currentPartKey = footprintEditState.partKeyQueue[0] ?? null;
-  const currentPart = currentPartKey ? parts[currentPartKey] : null;
 
   const getPinNetwork = (pinNumber: string | number) => {
     if (!currentPartKey) return null;

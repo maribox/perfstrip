@@ -1,37 +1,42 @@
 import type { ComponentBody, FootprintEditState, PinInfo, PinPosition, VariableFootprintSettings } from "$lib/types";
 import type { PartPin } from "xtoedif";
-import { collectDragPins, resolveFootprintLoad } from "./editorHelpers";
+import { collectDragPinGroups, collectDragPins, resolveFootprintLoad } from "./editorHelpers";
 
 export const applyPadClick = ({
   x,
   y,
   currentPartKey,
   selectedPins,
-  nextPinToPlace,
+  pinsToPlace,
   forcedPinNumber
 }: {
   x: number;
   y: number;
   currentPartKey: string | null;
   selectedPins: PinPosition[];
-  nextPinToPlace: PartPin | null;
+  pinsToPlace: PartPin[];
   forcedPinNumber: string | number | null;
 }) => {
-  const existingIndex = selectedPins.findIndex(pin => pin.x === x && pin.y === y);
-  if (existingIndex >= 0) {
-    const existingPin = selectedPins[existingIndex];
+  const existingPins = selectedPins.filter(pin => pin.x === x && pin.y === y);
+  const existingPin = existingPins.length > 0 ? existingPins[existingPins.length - 1] : null;
+  const unplacedPins = pinsToPlace.filter(
+    (pin) => !selectedPins.some((selected) => selected.pinNumber == pin.pinNumber)
+  );
+  if (unplacedPins.length === 0) {
+    if (!existingPin) return null;
     return {
       selectedPins,
       highlightedPin: { partKey: currentPartKey, pinNumber: existingPin.pinNumber } as PinInfo,
       forcedPinNumber
     };
   }
-  if (!nextPinToPlace) return null;
   const nextPins = [
     ...selectedPins,
-    { x, y, pinNumber: nextPinToPlace.pinNumber, name: nextPinToPlace.name }
+    ...unplacedPins.map((pin) => ({ x, y, pinNumber: pin.pinNumber, name: pin.name }))
   ];
-  const nextForced = forcedPinNumber != null && nextPinToPlace.pinNumber == forcedPinNumber ? null : forcedPinNumber;
+  const nextForced = forcedPinNumber != null && unplacedPins.some(pin => pin.pinNumber == forcedPinNumber)
+    ? null
+    : forcedPinNumber;
   return { selectedPins: nextPins, highlightedPin: null, forcedPinNumber: nextForced };
 };
 
@@ -64,7 +69,8 @@ export const applyPinDrag = ({
   maxRows,
   selectedPins,
   availablePins,
-  forcedPinNumber
+  forcedPinNumber,
+  pinGroups
 }: {
   x: number;
   y: number;
@@ -75,17 +81,20 @@ export const applyPinDrag = ({
   selectedPins: PinPosition[];
   availablePins: PartPin[];
   forcedPinNumber: string | number | null;
+  pinGroups?: PartPin[][];
 }) => {
-  const newPins = collectDragPins({
-    x,
-    y,
-    width,
-    height,
-    maxCols,
-    maxRows,
-    selectedPins,
-    availablePins
-  });
+  const newPins = pinGroups
+    ? collectDragPinGroups({ x, y, width, height, maxCols, maxRows, pinGroups })
+    : collectDragPins({
+        x,
+        y,
+        width,
+        height,
+        maxCols,
+        maxRows,
+        selectedPins,
+        availablePins
+      });
   if (newPins.length === 0) return null;
   const nextPins = [...selectedPins, ...newPins];
   const nextForced = forcedPinNumber != null && newPins.some(pin => pin.pinNumber == forcedPinNumber)

@@ -15,6 +15,7 @@
     NetworkInfo,
     PinInfo
   } from "$lib/types";
+  type PinRow = PartPin & { isPlaced: boolean; isSkipped?: boolean; pinFunction?: string };
 
   interface Props {
     currentPart: Part | null;
@@ -30,7 +31,7 @@
     onCancel: () => void;
     onFinish: () => void;
     allPinsPlaced: boolean;
-    currentPartPins: PartPin[];
+    currentPartPins: PinRow[];
     selectedPins: PinPosition[];
     nextPinToPlace: PinInfo | null;
     getNetworkForPin: (partKey: string, pinNumber: string | number) => NetworkInfo | null;
@@ -44,6 +45,8 @@
     onSkipNextConnectedPin: () => void;
     hideDisconnectedPins: boolean;
     onToggleHideDisconnectedPins: () => void;
+    groupConnectedPins: boolean;
+    onToggleGroupConnectedPins: () => void;
     componentBodies: ComponentBody[];
     onClearAllBodies: () => void;
     onRemoveBody: (index: number) => void;
@@ -77,6 +80,8 @@
     onSkipNextConnectedPin,
     hideDisconnectedPins,
     onToggleHideDisconnectedPins,
+    groupConnectedPins,
+    onToggleGroupConnectedPins,
     componentBodies,
     onClearAllBodies,
     onRemoveBody
@@ -163,6 +168,8 @@
             onSkipNextConnectedPin={onSkipNextConnectedPin}
             hideDisconnectedPins={hideDisconnectedPins}
             onToggleHideDisconnected={onToggleHideDisconnectedPins}
+            groupConnectedPins={groupConnectedPins}
+            onToggleGroupConnected={onToggleGroupConnectedPins}
           />
         </div>
 

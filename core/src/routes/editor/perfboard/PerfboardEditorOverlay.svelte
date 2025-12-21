@@ -1,8 +1,9 @@
 <script lang="ts">
+  import type { ComponentProps } from "svelte";
   import FootprintEditorView from "$lib/components/footprint-editor/FootprintEditorView.svelte";
 
   interface Props {
-    editorProps: Record<string, any>;
+    editorProps: ComponentProps<typeof FootprintEditorView>;
   }
 
   const { editorProps }: Props = $props();

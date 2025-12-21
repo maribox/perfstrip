@@ -1,5 +1,6 @@
-import type { ComponentBody, FootprintEditState, PinInfo, PinPosition, VariableFootprintSettings } from "$lib/types";
+import type { ComponentBody, FootprintEditState, NetworkInfo, PinInfo, PinPosition, VariableFootprintSettings } from "$lib/types";
 import type { PartPin } from "xtoedif";
+import { groupPinsByNetwork } from "./editorHelpers";
 import {
   applyBodyDrag,
   applyClearPins,
@@ -16,7 +17,7 @@ export const createEditorActions = ({
   getLayoutType,
   setLayoutPins,
   getCurrentPartKey,
-  getNextPinToPlace,
+  getPinsToPlace,
   getSelectedPins,
   setSelectedPins,
   setHighlightedPin,
@@ -29,6 +30,8 @@ export const createEditorActions = ({
   getPerfboardCols,
   getPerfboardRows,
   getFilteredUnplacedPins,
+  getGroupConnectedPins,
+  getNetworkForPin,
   getVariableFootprintSettings,
   setVariableFootprintSettings,
   setLayout
@@ -36,7 +39,7 @@ export const createEditorActions = ({
   getLayoutType: () => "fixed" | "variable";
   setLayoutPins: (pins: PinPosition[]) => void;
   getCurrentPartKey: () => string | null;
-  getNextPinToPlace: () => PartPin | null;
+  getPinsToPlace: () => PartPin[];
   getSelectedPins: () => PinPosition[];
   setSelectedPins: (pins: PinPosition[]) => void;
   setHighlightedPin: (pin: PinInfo | null) => void;
@@ -49,6 +52,8 @@ export const createEditorActions = ({
   getPerfboardCols: () => number;
   getPerfboardRows: () => number;
   getFilteredUnplacedPins: () => PartPin[];
+  getGroupConnectedPins: () => boolean;
+  getNetworkForPin: (partKey: string, pinNumber: string | number) => NetworkInfo | null;
   getVariableFootprintSettings: () => VariableFootprintSettings;
   setVariableFootprintSettings: (value: VariableFootprintSettings) => void;
   setLayout: (layout: FootprintEditState["currentFootprint"]["layout"]) => void;
@@ -60,7 +65,7 @@ export const createEditorActions = ({
       y,
       currentPartKey: getCurrentPartKey(),
       selectedPins: getSelectedPins(),
-      nextPinToPlace: getNextPinToPlace(),
+      pinsToPlace: getPinsToPlace(),
       forcedPinNumber: getForcedPinNumber()
     });
     if (!result) return;
@@ -78,6 +83,12 @@ export const createEditorActions = ({
   };
 
   const handlePinDrag = (x: number, y: number, width: number, height: number) => {
+    const availablePins = getFilteredUnplacedPins();
+    const currentPartKey = getCurrentPartKey();
+    const forcedPinNumber = getForcedPinNumber();
+    const pinGroups = getGroupConnectedPins() && currentPartKey
+      ? groupPinsByNetwork({ pins: availablePins, currentPartKey, getNetworkForPin, priorityPinNumber: forcedPinNumber })
+      : undefined;
     const result = applyPinDrag({
       x,
       y,
@@ -86,8 +97,9 @@ export const createEditorActions = ({
       maxCols: getPerfboardCols(),
       maxRows: getPerfboardRows(),
       selectedPins: getSelectedPins(),
-      availablePins: getFilteredUnplacedPins(),
-      forcedPinNumber: getForcedPinNumber()
+      availablePins,
+      forcedPinNumber,
+      pinGroups
     });
     if (!result) return;
     setSelectedPins(result.selectedPins);
@@ -129,12 +141,10 @@ export const createEditorActions = ({
       selectedPins: getSelectedPins(),
       variableFootprintSettings: getVariableFootprintSettings()
     });
-    if ("selectedPins" in next) {
-      setSelectedPins(next.selectedPins);
-      setComponentBodies(next.componentBodies);
-      setForcedPinNumber(next.forcedPinNumber);
-      setSkippedPinNumbers(next.skippedPinNumbers);
-    }
+    if ("selectedPins" in next && next.selectedPins !== undefined) setSelectedPins(next.selectedPins);
+    if ("componentBodies" in next && next.componentBodies !== undefined) setComponentBodies(next.componentBodies);
+    if ("forcedPinNumber" in next && next.forcedPinNumber !== undefined) setForcedPinNumber(next.forcedPinNumber);
+    if ("skippedPinNumbers" in next && next.skippedPinNumbers !== undefined) setSkippedPinNumbers(next.skippedPinNumbers);
     setLayout(next.layout);
   };
 

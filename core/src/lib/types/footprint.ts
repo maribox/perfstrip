@@ -1,4 +1,6 @@
-import type { Part, PinPosition, Footprint, PartPin } from "xtoedif";
+import type { PinPosition, Footprint, PartPin } from "xtoedif";
+
+export type { PartPin };
 
 export interface NetworkInfo {
   netName: string;

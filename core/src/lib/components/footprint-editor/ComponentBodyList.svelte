@@ -17,7 +17,7 @@
 <div class="h-full flex flex-col gap-2 min-h-0 flex-1">
   <div class="flex items-center justify-between mb-2">
     <span class="text-sm font-medium">Body</span>
-    <button class="btn btn-xs btn-error btn-outline" onclick={onClearAllBodies}>Clear</button>
+    <button class="btn btn-sm btn-error rounded-full" onclick={onClearAllBodies}>Clear</button>
   </div>
   <div class="bg-base-100 rounded p-2 flex-1 min-h-0 overflow-y-auto">
     {#if componentBodies && componentBodies.length > 0}
