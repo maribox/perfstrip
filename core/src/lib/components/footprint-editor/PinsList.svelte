@@ -6,7 +6,7 @@
   import IconFluentDeveloperBoard16Regular from "~icons/fluent/developer-board-16-regular";
   import IconIconParkOutlineFileQuestion from "~icons/icon-park-outline/file-question";
 
-  type PinRow = PartPin & { isPlaced: boolean; isSkipped?: boolean };
+  type PinRow = PartPin & { isPlaced: boolean; isSkipped?: boolean; pinFunction?: string };
 
   interface Props {
     currentPartPins: PinRow[];
@@ -77,6 +77,15 @@
     }
   };
 
+  const resolvePinLabel = (pin: PinRow) => {
+    const pinFunction = pin.pinFunction?.trim();
+    const pinName = pin.name?.trim();
+    const isNumberedName = pinName ? /^pin\s*\d+$/i.test(pinName) : false;
+    const primary = pinFunction || pinName || `Pin ${pin.pinNumber}`;
+    const secondary = pinFunction && pinName && pinName !== pinFunction && !isNumberedName ? pinName : null;
+    return { primary, secondary };
+  };
+
   // Auto-scroll to next pin
   $effect(() => {
     if (nextPinToPlace && scrollContainer) {
@@ -118,6 +127,7 @@
           {@const activePinNumber = highlightedPinNumber ?? nextPinToPlace?.pinNumber}
           {@const isActive = activePinNumber === partPin.pinNumber}
           {@const connectionCount = networkInfo?.connectedComponents?.length ?? 0}
+          {@const pinLabel = resolvePinLabel(partPin)}
           {@const uniqueConnections = networkInfo?.connectedComponents
             ? Array.from(new Map(networkInfo.connectedComponents.map(component => [
               `${component.ref}-${component.pinNumber}`,
@@ -138,7 +148,7 @@
                 {#if partPin.isPlaced && placedPin}
                   <input 
                     type="text" 
-                    value={placedPin.name || partPin.name}
+                    value={placedPin.name || partPin.pinFunction || partPin.name}
                     onchange={(e) => {
                       const index = selectedPins.findIndex(sp => sp.pinNumber == partPin.pinNumber);
                       if (index >= 0) onUpdatePinName(index, (e.target as HTMLInputElement)?.value || '');
@@ -151,7 +161,7 @@
                 <div class="min-w-0 flex-1">
                   <div class="flex items-center justify-between gap-2">
                     <div class="text-xs text-base-content/80 truncate font-medium">
-                      {partPin.name || `Pin ${partPin.pinNumber}`}
+                      {pinLabel.primary}
                     </div>
                     {#if isActive && !partPin.isPlaced}
                       <div class="flex items-center gap-2">
@@ -192,6 +202,9 @@
                       <span class="text-base-content/40"> · {connectionCount} link{connectionCount === 1 ? "" : "s"}</span>
                     {/if}
                   </div>
+                  {#if pinLabel.secondary}
+                    <div class="text-[11px] text-base-content/50 truncate">{pinLabel.secondary}</div>
+                  {/if}
                 </div>
               </div>
               {#if isActive}
