@@ -119,5 +119,5 @@ export const initFootprintEditForPart = ({
 };
 
 export const defaultBoardSize = (pinCount: number) => {
-  return Math.ceil(pinCount / 2) + 1;
+  return Math.max(5, Math.ceil(pinCount / 2) + 1);
 };
