@@ -36,7 +36,7 @@
   let filteredFootprints = $state(availableFootprints);
 </script>
 
-<div class="bg-base-200 rounded p-3 border">
+<div class="bg-base-200 rounded p-4">
   {#if isEditingSharedFootprint}
     <div class="alert alert-warning alert-sm mb-3">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,16 +50,18 @@
   {/if}
 
   <div class="mb-3">
-    <div class="flex items-center gap-3 mb-1">
-      <div class="flex-1">
-        <label for="footprint-input" class="block text-sm font-medium mb-1">Footprint</label>
+    <div class="flex flex-col gap-3 mb-2">
+      <div class="w-full">
+        <label for="footprint-input" class="block text-sm font-medium mb-1">
+          Footprint <span class="text-xs text-base-content/50">*</span>
+        </label>
         <div class="relative">
           <input 
             id="footprint-input"
             type="text" 
             bind:value={currentFootprint.name}
             class="input input-sm input-bordered w-full pr-8" 
-            placeholder="Type or select footprint..."
+            placeholder="Footprint label..."
             onfocus={() => {
               dropdownOpen = true;
               filteredFootprints = availableFootprints;
@@ -141,17 +143,17 @@
         </div>
       </div>
       
-      <div>
+      <div class="w-full">
         <label class="block text-sm font-medium mb-1">Type</label>
-        <div class="join">
+        <div class="join w-full">
           <button 
-            class="btn btn-sm join-item {currentFootprint.layout.type === 'fixed' ? 'btn-primary' : 'btn-outline'}" 
+            class="btn btn-sm join-item flex-1 {currentFootprint.layout.type === 'fixed' ? 'btn-primary' : 'btn-outline'}" 
             onclick={() => onSwitchFootprintType('fixed')}
           >
             Fixed
           </button>
           <button 
-            class="btn btn-sm join-item {currentFootprint.layout.type === 'variable' ? 'btn-primary' : 'btn-outline'}" 
+            class="btn btn-sm join-item flex-1 {currentFootprint.layout.type === 'variable' ? 'btn-primary' : 'btn-outline'}" 
             onclick={() => onSwitchFootprintType('variable')}
           >
             Variable
@@ -163,16 +165,13 @@
     {#if currentFootprint.name}
       {@const isExisting = availableFootprints.includes(currentFootprint.name)}
       {@const isOriginalName = currentFootprint.name === currentPart?.footprint?.name}
-      <div class="flex items-center gap-2 text-xs mt-1">
+      <div class="flex items-center gap-2 text-xs mt-1 text-base-content/60">
         {#if isExisting && isOriginalName}
           <span class="badge badge-secondary badge-xs">Current</span>
-          <span class="text-base-content/70">Editing the part's current footprint</span>
         {:else if isExisting}
-          <span class="badge badge-warning badge-xs">Existing</span>
-          <span class="text-base-content/70">Will overwrite existing footprint with same name</span>
+          <span class="badge badge-warning badge-xs">Overwrite</span>
         {:else if currentFootprint.name.trim() !== ""}
           <span class="badge badge-success badge-xs">New</span>
-          <span class="text-base-content/70">Creating new footprint variant</span>
         {/if}
       </div>
     {/if}

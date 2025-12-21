@@ -6,8 +6,6 @@
     currentFootprintType: "fixed" | "variable";
     onCancel: () => void;
     onFinish: () => void;
-    onColsChange: (cols: number) => void;
-    onRowsChange: (rows: number) => void;
   }
 
   let { 
@@ -16,40 +14,23 @@
     allPinsPlaced,
     currentFootprintType,
     onCancel,
-    onFinish,
-    onColsChange,
-    onRowsChange
+    onFinish
   }: Props = $props();
 </script>
 
-<div class="flex items-center justify-between bg-base-200 p-3 rounded-lg shrink-0">
+<div class="flex items-center justify-between bg-base-200/80 px-4 py-3 rounded-xl shrink-0 border border-base-300">
   <div class="flex items-center gap-4">
-    <span class="text-sm font-medium">Board Size:</span>
-    <div class="flex items-center gap-2">
-      <input 
-        type="number" 
-        bind:value={perfboardCols} 
-        min="5" 
-        max="30" 
-        class="input input-bordered w-20 text-center"
-        placeholder="Width"
-        onchange={() => onColsChange?.(perfboardCols)}
-      />
-      <span class="text-sm">×</span>
-      <input 
-        type="number" 
-        bind:value={perfboardRows} 
-        min="5" 
-        max="30" 
-        class="input input-bordered w-20 text-center"
-        placeholder="Height"
-        onchange={() => onRowsChange?.(perfboardRows)}
-      />
+    <div class="text-sm font-medium">Footprint Editor</div>
+    <div class="text-xs text-base-content/70">
+      Board {perfboardCols} × {perfboardRows}
+    </div>
+    <div class="text-xs text-base-content/50">
+      Use + around the board to grow size
     </div>
   </div>
   
   <div class="flex gap-2">
-    <button class="btn btn-secondary btn-sm" onclick={onCancel}>
+    <button class="btn btn-ghost btn-sm" onclick={onCancel}>
       Cancel
     </button>
     <button 

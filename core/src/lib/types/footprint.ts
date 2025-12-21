@@ -6,6 +6,7 @@ export interface NetworkInfo {
   connectedComponents: Array<{
     ref: string;
     name: string;
+    type?: string;
     pinNumber: string | number;
     pinFunction?: string;
   }>;

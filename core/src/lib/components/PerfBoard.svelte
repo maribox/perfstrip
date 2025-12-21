@@ -10,9 +10,10 @@
     componentBody?: { x: number; y: number; width: number; height: number }[] | null,
     onBodyDrag?: (x: number, y: number, width: number, height: number) => void,
     onPinDrag?: (x: number, y: number, width: number, height: number) => void,
-    pinLimitReached?: boolean,
     maxWidth?: number,
-    maxHeight?: number
+    maxHeight?: number,
+    allowScaleUp?: boolean,
+    maxScale?: number
   }
   let props: Props = $props()
 
@@ -27,8 +28,9 @@
   
   let maxWidth = $derived(props.maxWidth || (typeof window !== 'undefined' ? window.innerWidth * 0.8 : 800))
   let maxHeight = $derived(props.maxHeight || (typeof window !== 'undefined' ? window.innerHeight * 0.7 : 600))
-  
-  let scale = $derived(Math.min(1, maxWidth / idealWidth, maxHeight / idealHeight))
+
+  let maxScale = $derived(props.maxScale ?? (props.allowScaleUp ? Number.POSITIVE_INFINITY : 1))
+  let scale = $derived(Math.min(maxScale, maxWidth / idealWidth, maxHeight / idealHeight))
   
   let svgWidth = $derived(idealWidth * scale)
   let svgHeight = $derived(idealHeight * scale)
@@ -118,6 +120,7 @@
   onmouseup={handleMouseUp}
   role="application"
   aria-label="Interactive perfboard for component placement"
+  style="user-select: none;"
 >
   <!-- PCB Background -->
   <rect width={svgWidth} height={svgHeight} fill="#152347" />
@@ -151,23 +154,33 @@
         />
       {/if}
       
-      <!-- Copper pad -->
+      <!-- Hit target -->
       <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-      <circle 
-        cx={scaledPadding + colI * scaledSpacing + scaledSpacing * .5} 
-        cy={scaledPadding + rowI * scaledSpacing + scaledSpacing * .5} 
-        r={scaledPadRadius}
-        fill={isPinSelected(colI, rowI) ? "#FFD700" : (props.pinLimitReached && props.onPadClick ? "#8B5A3C" : "#CD7F32")}
-        stroke={isPinSelected(colI, rowI) ? "#FFA500" : "none"}
-        stroke-width={isPinSelected(colI, rowI) ? "2" : "0"}
-        style="cursor: {props.onPadClick ? (props.pinLimitReached && !isPinSelected(colI, rowI) ? 'not-allowed' : 'pointer') : 'default'}; opacity: {props.pinLimitReached && !isPinSelected(colI, rowI) ? '0.6' : '1'}"
+      <rect
+        x={scaledPadding + colI * scaledSpacing}
+        y={scaledPadding + rowI * scaledSpacing}
+        width={scaledSpacing}
+        height={scaledSpacing}
+        fill="transparent"
+        style="cursor: {props.onPadClick ? 'pointer' : 'default'}"
         role={props.onPadClick ? "button" : "presentation"}
         tabindex={props.onPadClick ? 0 : -1}
-        aria-label={props.onPadClick ? `Perfboard hole at column ${colI + 1}, row ${rowI + 1}${isPinSelected(colI, rowI) ? ' - selected as pin' : ''}${props.pinLimitReached && !isPinSelected(colI, rowI) ? ' - pin limit reached' : ''}` : undefined}
+        aria-label={props.onPadClick ? `Perfboard hole at column ${colI + 1}, row ${rowI + 1}${isPinSelected(colI, rowI) ? ' - selected as pin' : ''}` : undefined}
         onclick={() => handlePadClick(colI, rowI)}
         onkeydown={(e) => e.key === 'Enter' || e.key === ' ' ? handlePadClick(colI, rowI) : null}
         onmousedown={(e) => handleMouseDown(e, colI, rowI)}
         onmousemove={(e) => handleMouseMove(e, colI, rowI)}
+      />
+
+      <!-- Copper pad -->
+      <circle 
+        cx={scaledPadding + colI * scaledSpacing + scaledSpacing * .5} 
+        cy={scaledPadding + rowI * scaledSpacing + scaledSpacing * .5} 
+        r={scaledPadRadius}
+        fill={isPinSelected(colI, rowI) ? "#FFD700" : "#CD7F32"}
+        stroke={isPinSelected(colI, rowI) ? "#FFA500" : "none"}
+        stroke-width={isPinSelected(colI, rowI) ? "2" : "0"}
+        style="pointer-events: none; opacity: 1"
       />
       
       <!-- Drill hole -->

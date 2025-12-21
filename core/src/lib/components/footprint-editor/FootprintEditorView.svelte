@@ -1,10 +1,6 @@
 <script lang="ts">
-  import FootprintEditorHeader from "./FootprintEditorHeader.svelte";
-  import PinNetworkInfo from "./PinNetworkInfo.svelte";
-  import FootprintConfigPanel from "./FootprintConfigPanel.svelte";
-  import PinsList from "./PinsList.svelte";
-  import ComponentBodyList from "./ComponentBodyList.svelte";
-  import PerfBoard from "../PerfBoard.svelte";
+  import FootprintEditorBoard from "./FootprintEditorBoard.svelte";
+  import FootprintEditorSidebar from "./FootprintEditorSidebar.svelte";
   import type { Part, PinPosition } from "xtoedif";
   import type { 
     ComponentBody, 
@@ -44,6 +40,13 @@
     onUpdatePinName: (index: number, newName: string) => void;
     onRemovePin: (index: number) => void;
     onSetHighlightedPin: (pin: PinInfo | null) => void;
+    onSetPins: (pins: PinPosition[]) => void;
+    onSetBodies: (bodies: ComponentBody[]) => void;
+    onSelectPinToPlace: (pinNumber: string | number) => void;
+    onSkipNextPin: () => void;
+    onSkipNextConnectedPin: () => void;
+    hideDisconnectedPins: boolean;
+    onToggleHideDisconnectedPins: () => void;
     onClearAllBodies: () => void;
     onRemoveBody: (index: number) => void;
     handlePadClick: (x: number, y: number) => void;
@@ -80,104 +83,69 @@
     onUpdatePinName,
     onRemovePin,
     onSetHighlightedPin,
+    onSetPins,
+    onSetBodies,
+    onSelectPinToPlace,
+    onSkipNextPin,
+    onSkipNextConnectedPin,
+    hideDisconnectedPins,
+    onToggleHideDisconnectedPins,
     onClearAllBodies,
     onRemoveBody,
     handlePadClick,
     handleBodyDrag,
     handlePinDrag
   }: Props = $props();
+
 </script>
 
-<div class="w-full h-full flex flex-col gap-3 p-3 overflow-y-auto">
-  <FootprintEditorHeader 
-    bind:perfboardCols={perfboardCols}
-    bind:perfboardRows={perfboardRows}
-    {allPinsPlaced}
-    currentFootprintType={footprintEditState.currentFootprint.layout.type}
-    onCancel={onCancel}
-    onFinish={onFinish}
-    onColsChange={onColsChange}
-    onRowsChange={onRowsChange}
-  />
-
-  {#if nextPinToPlace}
-    {@const displayPin = nextPinToPlace}
-    {@const networkInfo = displayPin ? getNetworkForPin(displayPin.partKey || footprintEditState.partKeyQueue[0], displayPin.pinNumber) : null}
-    {@const isHighlighted = !!highlightedPin && highlightedPin.pinNumber === displayPin.pinNumber}
-    {@const pinnedPlaced = selectedPins.find(sp => sp.pinNumber == displayPin?.pinNumber)}
-    
-    <PinNetworkInfo 
-      {displayPin}
-      {networkInfo}
-      {isHighlighted}
-      {pinnedPlaced}
+<div class="w-full h-full flex flex-col gap-6 p-6">
+  <div class="flex flex-1 gap-8 overflow-hidden">
+    <FootprintEditorBoard
+      bind:perfboardCols
+      bind:perfboardRows
       {selectedPins}
-      onRemovePin={() => {
-        const index = selectedPins.findIndex(sp => sp.pinNumber == highlightedPin?.pinNumber);
-        if (index >= 0) {
-          onRemovePin(index);
-          highlightedPin = null;
-        }
-      }}
-      onClearHighlight={() => highlightedPin = null}
+      {componentBodies}
+      {onSetPins}
+      {onSetBodies}
+      {onColsChange}
+      {onRowsChange}
+      {handlePadClick}
+      {handleBodyDrag}
+      {handlePinDrag}
     />
-  {/if}
 
-  <div class="flex items-center justify-center shrink-0" style="height: 350px;">
-    <PerfBoard 
-      numCols={perfboardCols} 
-      numRows={perfboardRows} 
-      placedParts={[]} 
-      onPadClick={handlePadClick}
-      selectedPins={selectedPins}
-      componentBody={componentBodies}
-      onBodyDrag={handleBodyDrag}
-      onPinDrag={handlePinDrag}
-      pinLimitReached={allPinsPlaced}
-      maxWidth={320}
-      maxHeight={320}
+    <FootprintEditorSidebar
+      {currentPart}
+      {footprintEditState}
+      {availableFootprints}
+      {parts}
+      {isEditingSharedFootprint}
+      {partsWithSameFootprint}
+      {variableFootprintSettings}
+      {onFootprintNameChange}
+      {onLoadExistingFootprint}
+      {onSwitchFootprintType}
+      {onCancel}
+      {onFinish}
+      {allPinsPlaced}
+      {currentPartPins}
+      {selectedPins}
+      {nextPinToPlace}
+      {getNetworkForPin}
+      {highlightedPin}
+      {onClearAllPins}
+      {onUpdatePinName}
+      {onRemovePin}
+      {onSetHighlightedPin}
+      {onSelectPinToPlace}
+      {onSkipNextPin}
+      {onSkipNextConnectedPin}
+      {hideDisconnectedPins}
+      {onToggleHideDisconnectedPins}
+      {componentBodies}
+      {onClearAllBodies}
+      {onRemoveBody}
     />
-  </div>
-
-  <FootprintConfigPanel 
-    currentFootprint={footprintEditState.currentFootprint}
-    {availableFootprints}
-    {parts}
-    {isEditingSharedFootprint}
-    {partsWithSameFootprint}
-    {currentPart}
-    {variableFootprintSettings}
-    onFootprintNameChange={onFootprintNameChange}
-    onLoadExistingFootprint={onLoadExistingFootprint}
-    onSwitchFootprintType={onSwitchFootprintType}
-    onMinLengthChange={(value) => variableFootprintSettings.minLength = value}
-    onMaxLengthChange={(value) => variableFootprintSettings.maxLength = value}
-  />
-
-  <div class="flex gap-4">
-    {#if footprintEditState.currentFootprint.layout.type === "fixed"}
-      <div class="flex-1">
-        <PinsList 
-          {currentPartPins}
-          {selectedPins}
-          {allPinsPlaced}
-          {nextPinToPlace}
-          {parts}
-          {parsedKiCadDoc}
-          {getNetworkForPin}
-          footprintEditQueuePartKey={footprintEditState.partKeyQueue[0]}
-          onClearAllPins={onClearAllPins}
-          onUpdatePinName={onUpdatePinName}
-          onRemovePin={onRemovePin}
-          onSetHighlightedPin={onSetHighlightedPin}
-        />
-        
-        <ComponentBodyList 
-          {componentBodies}
-          {onClearAllBodies}
-          {onRemoveBody}
-        />
-      </div>
-    {/if}
   </div>
 </div>

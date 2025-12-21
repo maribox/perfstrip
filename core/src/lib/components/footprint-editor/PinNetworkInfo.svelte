@@ -7,9 +7,9 @@
     networkInfo: NetworkInfo | null;
     isHighlighted: boolean;
     pinnedPlaced: PinPosition | undefined;
-    selectedPins: PinPosition[];
     onRemovePin: () => void;
     onClearHighlight: () => void;
+    onSkipPin: () => void;
   }
 
   const { 
@@ -17,39 +17,34 @@
     networkInfo,
     isHighlighted,
     pinnedPlaced,
-    selectedPins,
     onRemovePin,
-    onClearHighlight
+    onClearHighlight,
+    onSkipPin
   }: Props = $props();
 </script>
 
 {#if displayPin}
-  <div class="{isHighlighted ? 'bg-info/10 border-info/30' : 'bg-primary/10 border-primary/30'} border rounded-lg p-3 shrink-0">
-    <div class="flex items-center justify-between mb-2">
-      <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 {isHighlighted ? 'text-info' : 'text-primary'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-        </svg>
-        <span class="text-sm font-medium {isHighlighted ? 'text-info' : 'text-primary'}">
-          {isHighlighted ? 'Selected' : 'Next to place'}: Pin {displayPin.pinNumber} - {displayPin.name || displayPin.pinFunction || `Pin${displayPin.pinNumber}`}
-        </span>
-        {#if networkInfo}
-          <span class="badge {isHighlighted ? 'badge-info' : 'badge-primary'} badge-xs"> {networkInfo.netName}</span>
-        {/if}
-        {#if pinnedPlaced}
-          <span class="badge badge-success badge-xs">Placed at {pinnedPlaced.x}·{pinnedPlaced.y}</span>
-        {:else}
-          <span class="badge badge-warning badge-xs">Not placed</span>
-        {/if}
+  <div class="{isHighlighted ? 'bg-info/10 border-info/30' : 'bg-base-200/70 border-base-300'} border rounded-lg p-3 shrink-0">
+    <div class="flex items-start justify-between gap-3">
+      <div class="min-w-0">
+        <div class="text-xs uppercase tracking-wide text-base-content/50">Pin</div>
+        <div class="text-sm font-semibold truncate">
+          {`#${displayPin.pinNumber}`} · {displayPin.name || displayPin.pinFunction || "Unnamed"}
+        </div>
       </div>
-      <div class="flex gap-1">
+      <div class="flex gap-2">
+        {#if !pinnedPlaced}
+          <button class="btn btn-xs btn-ghost" onclick={onSkipPin}>
+            Skip
+          </button>
+        {/if}
         {#if isHighlighted && pinnedPlaced}
           <button 
             class="btn btn-xs btn-error btn-outline"
             onclick={onRemovePin}
             title="Remove pin placement"
           >
-            Remove Pin
+            Remove
           </button>
         {/if}
         {#if isHighlighted}
@@ -63,27 +58,33 @@
         {/if}
       </div>
     </div>
-    
-    {#if networkInfo && networkInfo.connectedComponents.length > 0}
-      <div class="text-xs text-base-content/70">
-        <span class="font-medium">Will connect to:</span>
-        <div class="mt-1 space-y-1">
-          {#each networkInfo.connectedComponents as component}
-            <div class="bg-base-100/50 rounded px-2 py-1">
-              <span class="text-primary font-medium">{component.name}</span>
-              <span class="text-base-content/50">({component.ref})</span>
-              <span class="badge badge-outline badge-xs ml-1">Pin {component.pinNumber}</span>
-              {#if component.pinFunction}
-                <span class="text-base-content/40 ml-1">- {component.pinFunction}</span>
-              {/if}
-            </div>
-          {/each}
+
+    {#if networkInfo && networkInfo.netName !== "No net"}
+      <div class="mt-2 text-xs text-base-content/70">
+        <div class="flex items-center gap-2">
+          <span class="text-base-content/50">Net</span>
+          <span class="badge badge-outline badge-xs">{networkInfo.netName}</span>
         </div>
+        {#if networkInfo.connectedComponents.length > 0}
+          {@const uniqueConnections = Array.from(new Map(networkInfo.connectedComponents.map(component => [
+            `${component.ref}-${component.pinNumber}`,
+            component
+          ])).values())}
+          <div class="mt-2 flex flex-wrap gap-2">
+            {#each uniqueConnections as component}
+              <div
+                class="flex items-center gap-2 rounded-full bg-base-100/60 border border-base-300 px-2 py-1"
+                title={component.name + " (" + component.ref + ") pin " + component.pinNumber}
+              >
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span class="text-[11px] font-medium">{component.ref}·{component.pinNumber}</span>
+              </div>
+            {/each}
+          </div>
+        {:else}
+          <div class="text-base-content/50">No connections</div>
+        {/if}
       </div>
-    {:else if networkInfo}
-      <div class="text-xs text-base-content/50">This pin has no connections in the circuit</div>
-    {:else}
-      <div class="text-xs text-base-content/50">Pin name: {displayPin.name || displayPin.pinFunction || `Pin${displayPin.pinNumber}`}</div>
     {/if}
   </div>
 {/if}

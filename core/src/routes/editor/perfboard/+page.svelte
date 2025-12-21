@@ -23,10 +23,15 @@
   // Footprint editor state
   let perfboardCols = $state(8);
   let perfboardRows = $state(8);
+  let boardSizeManuallySet = $state(false);
   let selectedPins: PinPosition[] = $state([]);
   let componentBodies: ComponentBody[] = $state([]);
   let variableFootprintSettings: VariableFootprintSettings = $state({ minLength: 3, maxLength: 10 });
   let highlightedPin = $state(null as any);
+  let forcedPinNumber = $state(null as string | number | null);
+  let skippedPinNumbers: Array<string | number> = $state([]);
+  let hideDisconnectedPins = $state(false);
+  let autoBodyEnabled = $state(true);
 
   let footprintEditState: FootprintEditState = $state({
     partKeyQueue: [],
@@ -63,37 +68,93 @@
   let isEditingSharedFootprint = $derived(partsWithSameFootprint.length > 1);
 
   const removeBody = (index: number) => {
+    autoBodyEnabled = false;
     componentBodies = componentBodies.filter((item, i) => i !== index);
   };
 
+  let currentPartKey = $derived(footprintEditState.partKeyQueue[0] ?? null);
+
   let currentPart = $derived.by(() => {
-    const currentPartKey = footprintEditState.partKeyQueue[0];
     return currentPartKey ? parts[currentPartKey] : null;
   });
 
-  let currentPartPins = $derived.by(() => {
-    const currentPartKey = footprintEditState.partKeyQueue[0];
+  const getPinNetwork = (pinNumber: string | number) => {
+    if (!currentPartKey) return null;
+    return getNetworkForPin(parts, currentPartKey, pinNumber, parsedKiCadDoc);
+  };
+
+  const isConnectedPin = (pinNumber: string | number) => {
+    const network = getPinNetwork(pinNumber);
+    return !!network && network.netName !== "No net";
+  };
+
+  let basePartPins = $derived.by(() => {
+    if (!currentPartKey) return [];
     return getCurrentPartPins(parts, currentPartKey, selectedPins);
   });
 
+  let currentPartPins = $derived.by(() => {
+    return basePartPins.map((pin) => {
+      const isSkipped = skippedPinNumbers.some((p) => p == pin.pinNumber);
+      return {
+        ...pin,
+        isSkipped,
+        isPlaced: pin.isPlaced || isSkipped
+      };
+    });
+  });
+
+  let unplacedPins = $derived.by(() => currentPartPins.filter((pin) => !pin.isPlaced));
+  let filteredUnplacedPins = $derived.by(() => {
+    if (!hideDisconnectedPins) return unplacedPins;
+    return unplacedPins.filter((pin) => isConnectedPin(pin.pinNumber));
+  });
+
   let nextPinToPlace = $derived.by(() => {
-    if (!currentPartPins || currentPartPins.length === 0) return null;
-    return currentPartPins.find(p => !p.isPlaced) || null;
+    if (filteredUnplacedPins.length === 0) return null;
+
+    if (forcedPinNumber != null) {
+      const forcedPin = filteredUnplacedPins.find(p => p.pinNumber == forcedPinNumber);
+      if (forcedPin) return forcedPin;
+    }
+
+    return filteredUnplacedPins[0];
+  });
+
+  $effect(() => {
+    if (footprintEditState.currentFootprint.layout.type !== "fixed") return;
+    if (!currentPartKey || !nextPinToPlace) {
+      highlightedPin = null;
+      return;
+    }
+    if (highlightedPin?.pinNumber !== nextPinToPlace.pinNumber) {
+      highlightedPin = { partKey: currentPartKey, pinNumber: nextPinToPlace.pinNumber };
+    }
+  });
+
+  $effect(() => {
+    if (!hideDisconnectedPins || forcedPinNumber == null) return;
+    if (!isConnectedPin(forcedPinNumber)) {
+      forcedPinNumber = null;
+    }
   });
 
   let allPinsPlaced = $derived.by(() => {
-    if (!currentPartPins || currentPartPins.length === 0) return false;
-    return currentPartPins.every(pin => pin.isPlaced);
+    if (currentPartPins.length === 0) return false;
+    const relevantPins = currentPartPins.filter((pin) => isConnectedPin(pin.pinNumber));
+    if (relevantPins.length === 0) return true;
+    return relevantPins.every(pin => pin.isPlaced);
   });
 
   const handlePadClick = (x: number, y: number) => {
     if (footprintEditState.currentFootprint.layout.type === "fixed") {
+      if (!currentPartKey) return;
       const existingIndex = selectedPins.findIndex(pin => pin.x === x && pin.y === y);
       if (existingIndex >= 0) {
         const existingPin = selectedPins[existingIndex];
-        highlightedPin = { partKey: footprintEditState.partKeyQueue[0], pinNumber: existingPin.pinNumber };
+        highlightedPin = { partKey: currentPartKey, pinNumber: existingPin.pinNumber };
       } else {
-        const unplacedPin = currentPartPins.find(p => !p.isPlaced);
+        const unplacedPin = nextPinToPlace;
         if (unplacedPin) {
           selectedPins = [...selectedPins, { 
             x, 
@@ -102,6 +163,9 @@
             name: unplacedPin.name
           }];
           highlightedPin = null;
+          if (forcedPinNumber != null && unplacedPin.pinNumber == forcedPinNumber) {
+            forcedPinNumber = null;
+          }
         }
       }
       if (footprintEditState.currentFootprint.layout.type === "fixed") {
@@ -112,6 +176,7 @@
 
   const handleBodyDrag = (x: number, y: number, width: number, height: number) => {
     if (width > 1 || height > 1) {
+      autoBodyEnabled = false;
       const newBody = { x, y, width, height };
       componentBodies = [...componentBodies, newBody];
     }
@@ -119,13 +184,14 @@
 
   const handlePinDrag = (x: number, y: number, width: number, height: number) => {
     const newPins: typeof selectedPins = [];
+    const remainingPins = filteredUnplacedPins.length;
     
-    for (let rowI = y; rowI < y + height && newPins.length < currentPartPins.length - selectedPins.length; rowI++) {
-      for (let colI = x; colI < x + width && newPins.length < currentPartPins.length - selectedPins.length; colI++) {
+    for (let rowI = y; rowI < y + height && newPins.length < remainingPins; rowI++) {
+      for (let colI = x; colI < x + width && newPins.length < remainingPins; colI++) {
         if (colI < perfboardCols && rowI < perfboardRows) {
           const exists = selectedPins.some(pin => pin.x === colI && pin.y === rowI);
           if (!exists) {
-            const unplacedPin = currentPartPins.find(p => !p.isPlaced && !newPins.some(np => np.pinNumber === p.pinNumber));
+            const unplacedPin = filteredUnplacedPins.find(p => !newPins.some(np => np.pinNumber === p.pinNumber));
             if (unplacedPin) {
               newPins.push({
                 x: colI,
@@ -140,6 +206,9 @@
     }
     
     selectedPins = [...selectedPins, ...newPins];
+    if (forcedPinNumber != null && newPins.some(pin => pin.pinNumber == forcedPinNumber)) {
+      forcedPinNumber = null;
+    }
     if (footprintEditState.currentFootprint.layout.type === "fixed") {
       footprintEditState.currentFootprint.layout.pins = selectedPins;
     }
@@ -154,13 +223,27 @@
 
   const clearAllPins = () => {
     selectedPins = [];
+    forcedPinNumber = null;
+    skippedPinNumbers = [];
     if (footprintEditState.currentFootprint.layout.type === "fixed") {
       footprintEditState.currentFootprint.layout.pins = [];
     }
   };
 
   const clearAllBodies = () => {
+    autoBodyEnabled = false;
     componentBodies = [];
+  };
+
+  const setSelectedPins = (pins: PinPosition[]) => {
+    selectedPins = pins;
+    if (footprintEditState.currentFootprint.layout.type === "fixed") {
+      footprintEditState.currentFootprint.layout.pins = selectedPins;
+    }
+  };
+
+  const setComponentBodies = (bodies: ComponentBody[]) => {
+    componentBodies = bodies;
   };
 
   const updatePinName = (index: number, newName: string) => {
@@ -181,6 +264,8 @@
     } else {
       selectedPins = [];
       componentBodies = [];
+      forcedPinNumber = null;
+      skippedPinNumbers = [];
       
       footprintEditState.currentFootprint.layout = {
         type: "variable",
@@ -224,6 +309,16 @@
     }
   });
 
+  $effect(() => {
+    if (footprintEditState.partKeyQueue.length === 0 || boardSizeManuallySet) return;
+    const pinCount = currentPartPins?.length || 0;
+    if (pinCount > 0) {
+      const size = Math.ceil(pinCount / 2) + 1;
+      perfboardCols = size;
+      perfboardRows = size;
+    }
+  });
+
   const onEditFootprint: OnEditFootprintFunction = (partKey: string) => {
     footprintEditState.partKeyQueue.push(partKey);
     resetEditingState();
@@ -249,7 +344,96 @@
     componentBodies = [];
     variableFootprintSettings = { minLength: 3, maxLength: 10 };
     highlightedPin = null;
+    boardSizeManuallySet = false;
+    forcedPinNumber = null;
+    skippedPinNumbers = [];
+    autoBodyEnabled = true;
   };
+
+  const markSkippedPin = (pinNumber: string | number) => {
+    if (skippedPinNumbers.some(p => p == pinNumber)) return;
+    skippedPinNumbers = [...skippedPinNumbers, pinNumber];
+  };
+
+  const setFocusedPin = (pin: (typeof currentPartPins)[number] | null) => {
+    if (pin && currentPartKey) {
+      forcedPinNumber = pin.pinNumber;
+      highlightedPin = { partKey: currentPartKey, pinNumber: pin.pinNumber };
+    } else {
+      forcedPinNumber = null;
+      highlightedPin = null;
+    }
+  };
+
+  const findNextUnplacedPin = (
+    afterPinNumber: string | number,
+    predicate: (pin: (typeof currentPartPins)[number]) => boolean = () => true
+  ) => {
+    const startIndex = currentPartPins.findIndex((pin) => pin.pinNumber == afterPinNumber);
+    const afterList = startIndex >= 0 ? currentPartPins.slice(startIndex + 1) : currentPartPins;
+    return (
+      afterList.find((pin) => !pin.isPlaced && predicate(pin)) ??
+      currentPartPins.find((pin) => !pin.isPlaced && predicate(pin)) ??
+      null
+    );
+  };
+
+  const selectPinToPlace = (pinNumber: string | number) => {
+    if (!currentPartKey) return;
+    if (hideDisconnectedPins && !isConnectedPin(pinNumber)) return;
+    forcedPinNumber = pinNumber;
+    skippedPinNumbers = skippedPinNumbers.filter(p => p != pinNumber);
+    highlightedPin = { partKey: currentPartKey, pinNumber };
+  };
+
+  const skipNextPin = () => {
+    const pinNumber = highlightedPin?.pinNumber ?? nextPinToPlace?.pinNumber;
+    if (pinNumber == null) return;
+    markSkippedPin(pinNumber);
+    if (forcedPinNumber != null && pinNumber == forcedPinNumber) {
+      forcedPinNumber = null;
+    }
+    setFocusedPin(findNextUnplacedPin(pinNumber));
+  };
+
+  const skipToNextConnectedPin = () => {
+    const currentPinNumber = highlightedPin?.pinNumber ?? nextPinToPlace?.pinNumber;
+    if (currentPinNumber == null) return;
+    markSkippedPin(currentPinNumber);
+    if (forcedPinNumber != null && currentPinNumber == forcedPinNumber) {
+      forcedPinNumber = null;
+    }
+    setFocusedPin(findNextUnplacedPin(currentPinNumber, (pin) => isConnectedPin(pin.pinNumber)));
+  };
+
+  $effect(() => {
+    if (!autoBodyEnabled) return;
+    if (selectedPins.length === 0) {
+      componentBodies = [];
+      return;
+    }
+    const xs = selectedPins.map(pin => pin.x);
+    const ys = selectedPins.map(pin => pin.y);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+    componentBodies = [
+      { x: minX, y: minY, width: maxX - minX + 1, height: maxY - minY + 1 }
+    ];
+  });
+
+  $effect(() => {
+    if (selectedPins.length === 0) return;
+    const placed = new Set(selectedPins.map(pin => pin.pinNumber));
+    const filtered = skippedPinNumbers.filter(pin => !placed.has(pin));
+    if (filtered.length !== skippedPinNumbers.length) {
+      skippedPinNumbers = filtered;
+    }
+    if (forcedPinNumber != null && placed.has(forcedPinNumber)) {
+      forcedPinNumber = null;
+    }
+  });
 
   const onFinishCurrentFootprint = () => {
     const currentPartKey = footprintEditState.partKeyQueue[0];
@@ -288,12 +472,22 @@
   }
 </script>
 
-<PaneGroup direction="horizontal" class="flex-1 h-full">
-  <!-- left side: PerfBoard, starts at 60 % width -->
-  <Pane defaultSize={60} class="flex flex-col items-center justify-center">
-    {#if footprintEditState.partKeyQueue.length === 0}
+{#if footprintEditState.partKeyQueue.length === 0}
+  <PaneGroup direction="horizontal" class="flex-1 h-full">
+    <!-- left side: PerfBoard, starts at 60 % width -->
+    <Pane defaultSize={60} class="flex flex-col items-center justify-center">
       <PerfBoard numCols={20} numRows={20} {placedParts} />
-      {:else}
+    </Pane>
+
+    <PaneResizer class="w-2 bg-accent-content hover:bg-accent cursor-col-resize transition-colors" />
+
+    <Pane defaultSize={40} class="min-w-0 bg-base-200">
+      <PartsList {parts} {footprintEditState} {onEditFootprint} {onFinishCurrentFootprint} {onCancelCurrentFootprint} {onEditMultipleFootprints} />
+    </Pane>
+  </PaneGroup>
+{:else}
+  <div class="fixed inset-0 z-50 flex items-start justify-center bg-base-200/70 backdrop-blur-sm p-0">
+    <div class="w-full h-full max-w-none bg-base-100 border border-base-300 shadow-2xl rounded-none overflow-hidden">
       <FootprintEditorView 
         bind:perfboardCols={perfboardCols}
         bind:perfboardRows={perfboardRows}
@@ -314,8 +508,14 @@
         getNetworkForPin={(partKey, pinNumber) => getNetworkForPin(parts, partKey, pinNumber, parsedKiCadDoc)}
         onCancel={onCancelCurrentFootprint}
         onFinish={onFinishCurrentFootprint}
-        onColsChange={(cols) => perfboardCols = cols}
-        onRowsChange={(rows) => perfboardRows = rows}
+        onColsChange={(cols) => {
+          boardSizeManuallySet = true;
+          perfboardCols = cols;
+        }}
+        onRowsChange={(rows) => {
+          boardSizeManuallySet = true;
+          perfboardRows = rows;
+        }}
         onFootprintNameChange={(name) => {
           footprintEditState.currentFootprint.name = name;
         }}
@@ -325,18 +525,19 @@
         onUpdatePinName={updatePinName}
         onRemovePin={removePin}
         onSetHighlightedPin={(pin) => highlightedPin = pin}
+        onSetPins={setSelectedPins}
+        onSetBodies={setComponentBodies}
+        onSelectPinToPlace={selectPinToPlace}
+        onSkipNextPin={skipNextPin}
+        onSkipNextConnectedPin={skipToNextConnectedPin}
+        hideDisconnectedPins={hideDisconnectedPins}
+        onToggleHideDisconnectedPins={() => hideDisconnectedPins = !hideDisconnectedPins}
         onClearAllBodies={clearAllBodies}
         onRemoveBody={removeBody}
         {handlePadClick}
         {handleBodyDrag}
         {handlePinDrag}
       />
-    {/if}
-  </Pane>
-
-  <PaneResizer class="w-2 bg-accent-content hover:bg-accent  cursor-col-resize transition-colors" />
-
-  <Pane defaultSize={40} class="min-w-0 bg-base-200">
-    <PartsList {parts} {footprintEditState} {onEditFootprint} {onFinishCurrentFootprint} {onCancelCurrentFootprint} {onEditMultipleFootprints} />
-  </Pane>
-</PaneGroup>
+    </div>
+  </div>
+{/if}

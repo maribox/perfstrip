@@ -22,10 +22,15 @@ export function getNetworkForPin(
     }
   }
   
+  if (/^unconnected/i.test(netName)) {
+    netName = "No net";
+  }
+
   // Build network info from the netCode
   const connectedComponents: Array<{
     ref: string;
     name: string;
+    type?: string;
     pinNumber: string | number;
     pinFunction?: string;
   }> = [];
@@ -35,9 +40,11 @@ export function getNetworkForPin(
     if (otherPart.pins) {
       otherPart.pins.forEach(otherPin => {
         if (otherPin.netCode === pin.netCode) {
+          if (otherPartKey === partKey && otherPin.pinNumber == pinNumber) return;
           connectedComponents.push({
             ref: otherPartKey,
             name: otherPart.name,
+            type: otherPart.type,
             pinNumber: otherPin.pinNumber,
             pinFunction: otherPin.pinFunction
           });
