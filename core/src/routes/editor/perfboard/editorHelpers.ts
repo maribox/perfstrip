@@ -1,5 +1,6 @@
 import type { Footprint, NetworkInfo, PinPosition, VariableFootprintSettings, Part } from "$lib/types";
 import type { PartPin } from "xtoedif";
+import { DEFAULT_VARIABLE_FOOTPRINT_SETTINGS } from "./editorDefaults";
 
 export const collectDragPins = ({
   x,
@@ -150,8 +151,8 @@ export const resolveFootprintLoad = ({
     currentFootprint: { ...footprint },
     selectedPins: [],
     variableFootprintSettings: {
-      minLength: footprint.layout.minLength || 3,
-      maxLength: footprint.layout.maxLength || 10
+      minLength: footprint.layout.minLength ?? DEFAULT_VARIABLE_FOOTPRINT_SETTINGS.minLength,
+      maxLength: footprint.layout.maxLength ?? DEFAULT_VARIABLE_FOOTPRINT_SETTINGS.maxLength
     }
   };
 };

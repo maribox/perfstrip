@@ -11,8 +11,7 @@
     "strict": true,
     "moduleResolution": "bundler",
     "plugins": [
-      {
-      }
+      {}
     ],
     "strictNullChecks": true
   }

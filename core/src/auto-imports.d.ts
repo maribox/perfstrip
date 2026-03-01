@@ -11,5 +11,11 @@ declare global {
   const IconIconParkOutlineResistor: typeof import('~icons/icon-park-outline/resistor')['default']
   const IconIconoirElectronicsTransistor: typeof import('~icons/iconoir/electronics-transistor')['default']
   const IconLucideEdit: typeof import('~icons/lucide/edit')['default']
+  const IconLucideMove: typeof import('~icons/lucide/move')['default']
+  const IconLucidePlus: typeof import('~icons/lucide/plus')['default']
+  const IconLucideUpload: typeof import('~icons/lucide/upload')['default']
+  const IconMdiCog: typeof import('~icons/mdi/cog')['default']
   const IconMdiGithub: typeof import('~icons/mdi/github')['default']
+  const IconMdiRestart: typeof import('~icons/mdi/restart')['default']
+  const IconMdiShuffle: typeof import('~icons/mdi/shuffle')['default']
 }

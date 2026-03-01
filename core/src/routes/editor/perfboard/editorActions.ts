@@ -15,11 +15,10 @@ import {
 
 export const createEditorActions = ({
   getLayoutType,
-  setLayoutPins,
   getCurrentPartKey,
   getPinsToPlace,
   getSelectedPins,
-  setSelectedPins,
+  setPins,
   setHighlightedPin,
   getForcedPinNumber,
   setForcedPinNumber,
@@ -37,11 +36,10 @@ export const createEditorActions = ({
   setLayout
 }: {
   getLayoutType: () => "fixed" | "variable";
-  setLayoutPins: (pins: PinPosition[]) => void;
   getCurrentPartKey: () => string | null;
   getPinsToPlace: () => PartPin[];
   getSelectedPins: () => PinPosition[];
-  setSelectedPins: (pins: PinPosition[]) => void;
+  setPins: (pins: PinPosition[]) => void;
   setHighlightedPin: (pin: PinInfo | null) => void;
   getForcedPinNumber: () => string | number | null;
   setForcedPinNumber: (value: string | number | null) => void;
@@ -60,19 +58,28 @@ export const createEditorActions = ({
 }) => {
   const handlePadClick = (x: number, y: number) => {
     if (getLayoutType() !== "fixed") return;
+    const pinsToPlace = getPinsToPlace();
+    // Scratch part: no predefined pins, so create a new pin on each click
+    if (pinsToPlace.length === 0 && getSelectedPins().every(p => p.x !== x || p.y !== y)) {
+      const selectedPins = getSelectedPins();
+      const nextPinNumber = selectedPins.length > 0
+        ? Math.max(...selectedPins.map(p => typeof p.pinNumber === "number" ? p.pinNumber : parseInt(String(p.pinNumber)) || 0)) + 1
+        : 1;
+      setPins([...selectedPins, { x, y, pinNumber: nextPinNumber, name: `${nextPinNumber}` }]);
+      return;
+    }
     const result = applyPadClick({
       x,
       y,
       currentPartKey: getCurrentPartKey(),
       selectedPins: getSelectedPins(),
-      pinsToPlace: getPinsToPlace(),
+      pinsToPlace,
       forcedPinNumber: getForcedPinNumber()
     });
     if (!result) return;
-    setSelectedPins(result.selectedPins);
+    setPins(result.selectedPins);
     setHighlightedPin(result.highlightedPin);
     setForcedPinNumber(result.forcedPinNumber);
-    setLayoutPins(result.selectedPins);
   };
 
   const handleBodyDrag = (x: number, y: number, width: number, height: number) => {
@@ -102,37 +109,25 @@ export const createEditorActions = ({
       pinGroups
     });
     if (!result) return;
-    setSelectedPins(result.selectedPins);
+    setPins(result.selectedPins);
     setForcedPinNumber(result.forcedPinNumber);
-    if (getLayoutType() === "fixed") {
-      setLayoutPins(result.selectedPins);
-    }
   };
 
   const removePin = (index: number) => {
     const nextPins = applyRemovePin(getSelectedPins(), index);
-    setSelectedPins(nextPins);
-    if (getLayoutType() === "fixed") {
-      setLayoutPins(nextPins);
-    }
+    setPins(nextPins);
   };
 
   const clearAllPins = () => {
     const cleared = applyClearPins();
-    setSelectedPins(cleared.selectedPins);
+    setPins(cleared.selectedPins);
     setForcedPinNumber(cleared.forcedPinNumber);
     setSkippedPinNumbers(cleared.skippedPinNumbers);
-    if (getLayoutType() === "fixed") {
-      setLayoutPins([]);
-    }
   };
 
   const updatePinName = (index: number, newName: string) => {
     const nextPins = applyUpdatePinName(getSelectedPins(), index, newName);
-    setSelectedPins(nextPins);
-    if (getLayoutType() === "fixed") {
-      setLayoutPins(nextPins);
-    }
+    setPins(nextPins);
   };
 
   const switchFootprintType = (type: "fixed" | "variable") => {
@@ -141,11 +136,11 @@ export const createEditorActions = ({
       selectedPins: getSelectedPins(),
       variableFootprintSettings: getVariableFootprintSettings()
     });
-    if ("selectedPins" in next && next.selectedPins !== undefined) setSelectedPins(next.selectedPins);
+    setLayout(next.layout);
+    if ("selectedPins" in next && next.selectedPins !== undefined) setPins(next.selectedPins);
     if ("componentBodies" in next && next.componentBodies !== undefined) setComponentBodies(next.componentBodies);
     if ("forcedPinNumber" in next && next.forcedPinNumber !== undefined) setForcedPinNumber(next.forcedPinNumber);
     if ("skippedPinNumbers" in next && next.skippedPinNumbers !== undefined) setSkippedPinNumbers(next.skippedPinNumbers);
-    setLayout(next.layout);
   };
 
   const loadExistingFootprint = (
@@ -160,21 +155,20 @@ export const createEditorActions = ({
       variableFootprintSettings: getVariableFootprintSettings()
     });
     if (!result) return null;
-    setSelectedPins(result.selectedPins);
+    setPins(result.selectedPins);
     setVariableFootprintSettings(result.variableFootprintSettings);
     return result.currentFootprint;
   };
 
   const resetEditingState = () => {
     const reset = applyResetEditingState();
-    setSelectedPins(reset.selectedPins);
+    setPins(reset.selectedPins);
     setComponentBodies(reset.componentBodies);
     setVariableFootprintSettings(reset.variableFootprintSettings);
     setHighlightedPin(reset.highlightedPin);
     setForcedPinNumber(reset.forcedPinNumber);
     setSkippedPinNumbers(reset.skippedPinNumbers);
     setAutoBodyEnabled(reset.autoBodyEnabled);
-    return reset.boardSizeManuallySet;
   };
 
   return {

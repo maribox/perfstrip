@@ -1,6 +1,6 @@
-import { DEFAULT_FOOTPRINTS } from "xtoedif";
+import { KNOWN_FOOTPRINTS } from "xtoedif";
 import { getCurrentPartPins } from "$lib/utils";
-import type { Part, PinPosition, FootprintEditState } from "$lib/types";
+import type { Part, PinPosition, FootprintEditState, NetworkInfo } from "$lib/types";
 
 export const computeDerivedState = ({
   parts,
@@ -9,7 +9,6 @@ export const computeDerivedState = ({
   skippedPinNumbers,
   forcedPinNumber,
   hideDisconnectedPins,
-  parsedKiCadDoc,
   getNetworkForPin
 }: {
   parts: Record<string, Part>;
@@ -18,8 +17,7 @@ export const computeDerivedState = ({
   skippedPinNumbers: Array<string | number>;
   forcedPinNumber: string | number | null;
   hideDisconnectedPins: boolean;
-  parsedKiCadDoc: any;
-  getNetworkForPin: typeof import("$lib/utils").getNetworkForPin;
+  getNetworkForPin: (partKey: string, pinNumber: string | number) => NetworkInfo | null;
 }) => {
   const currentPartKey = footprintEditState.partKeyQueue[0] ?? null;
   const currentPart = currentPartKey ? parts[currentPartKey] : null;
@@ -31,7 +29,7 @@ export const computeDerivedState = ({
         unique.add(part.footprint.name);
       }
     });
-    Object.values(DEFAULT_FOOTPRINTS).forEach(footprint => {
+    Object.values(KNOWN_FOOTPRINTS).forEach(footprint => {
       if (footprint?.name) {
         unique.add(footprint.name);
       }
@@ -52,7 +50,7 @@ export const computeDerivedState = ({
 
   const getPinNetwork = (pinNumber: string | number) => {
     if (!currentPartKey) return null;
-    return getNetworkForPin(parts, currentPartKey, pinNumber, parsedKiCadDoc);
+    return getNetworkForPin(currentPartKey, pinNumber);
   };
 
   const isConnectedPin = (pinNumber: string | number) => {
@@ -84,7 +82,10 @@ export const computeDerivedState = ({
     return filteredUnplacedPins[0];
   })();
 
+  const isScratchPart = currentPart != null && (!currentPart.pins || currentPart.pins.length === 0);
   const allPinsPlaced = (() => {
+    // Scratch parts: OK as long as at least one pin is placed
+    if (isScratchPart) return selectedPins.length > 0;
     if (currentPartPins.length === 0) return false;
     const relevantPins = currentPartPins.filter((pin) => isConnectedPin(pin.pinNumber));
     if (relevantPins.length === 0) return true;

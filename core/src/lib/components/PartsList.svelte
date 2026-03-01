@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { Part } from "xtoedif";
-  import type { 
+  import type {
     FootprintEditState,
     OnEditFootprintFunction,
-    OnEditMultipleFootprintsFunction 
+    OnEditMultipleFootprintsFunction
   } from "$lib/types";
 
   const {
@@ -13,6 +13,8 @@
     onFinishCurrentFootprint,
     onCancelCurrentFootprint,
     onEditMultipleFootprints,
+    onAddPart,
+    onUploadSpice,
   }: {
     parts: Record<string, Part>;
     footprintEditState: FootprintEditState
@@ -20,11 +22,26 @@
     onFinishCurrentFootprint: () =>  void;
     onCancelCurrentFootprint: () =>  void;
     onEditMultipleFootprints: OnEditMultipleFootprintsFunction;
+    onAddPart: () => void;
+    onUploadSpice: (spiceContent: string) => void;
   } = $props();
 
-  const hasInvalidFootprints = $derived(() => {
-    return Object.values(parts || {}).some((part) => !part.comp.footprint || part.comp.footprint.trim() === "");
-  });
+  let fileInput: HTMLInputElement;
+
+  function handleFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file = target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target?.result as string;
+        if (content) onUploadSpice(content);
+      };
+      reader.readAsText(file);
+    }
+    // Reset so the same file can be re-uploaded
+    target.value = "";
+  }
 
 </script>
 
@@ -63,7 +80,6 @@
                   {:else if part.type === "Transistor"}
                     <IconIconoirElectronicsTransistor class="w-full h-full" />
                   {:else if part.type === "Board"}
-                    <!-- <Board class="w-full h-full"/> -->
                     <IconFluentDeveloperBoard16Regular class="w-full h-full" />
                   {:else}
                     <IconIconParkOutlineFileQuestion class="w-full h-full" />
@@ -72,47 +88,60 @@
               </div>
             </div>
             <div class="flex-1 min-w-0 py-2 bg-base-300 px-2 rounded-xl">
-              <h2 class="font-semibold leading-tight truncate mb-1">
-                {part.name}
-              </h2>
-              <p class="text-sm opacity-70 break-words line-clamp-2">
-                {part.description}
-              </p>
+              <div class="flex items-baseline gap-2 mb-1">
+                <span class="text-xs font-mono text-primary/80">{partKey}</span>
+                <h2 class="font-semibold leading-tight truncate">
+                  {part.name}
+                </h2>
+                {#if part.pinCount > 0}
+                  <span class="text-xs text-base-content/50 flex-shrink-0">{part.pinCount}p</span>
+                {/if}
+              </div>
+              {#if part.description}
+                <p class="text-xs opacity-60 break-words line-clamp-1">
+                  {part.description}
+                </p>
+              {/if}
             </div>
             {#if footprintEditState.partKeyQueue[0] !== partKey}
-            <div class="w-48 flex-shrink-0 pl-2">
+            <div class="flex flex-col gap-1 flex-shrink-0 pl-2">
               <button
-                class="btn btn-sm btn-outline w-full px-3 py-1 bg-base-300 rounded-md {!part.footprint ? 'border-red-700' : ''}"
+                class="btn btn-sm btn-outline px-3 py-1 bg-base-300 rounded-md {!part.footprint ? 'border-red-700' : ''}"
                 title={part.footprint?.name ?? "Click to set footprint"}
                 onclick={() => onEditFootprint(partKey)}
                 disabled={footprintEditState.partKeyQueue.length !== 0}
               >
-                <span class="text-xs truncate block w-full">
+                <span class="text-xs truncate block max-w-32">
                   {part.footprint?.name ?? "Create footprint"}
                 </span>
-                  <IconLucideEdit class="w-5 h-5" />
-                  
-                </button>
-                
-              </div>
-              {/if}
-                            <!-- {#if footprintEditState.partKeyQueue[0] === partKey}
-
-             <IconMdiCheck class="w-6 h-6 bg-emerald-950 rounded p-0.5" onclick={(e) => {e.stopPropagation()
-                    onFinishCurrentFootprint()
-                  }}
-                  />
-                  <IconMdiClose class="w-6 h-6 bg-red-950 rounded p-0.5" onclick={(e) => {e.stopPropagation()
-                    onCancelCurrentFootprint()
-                  }}/>
-                                  {/if}
- -->
+                <IconLucideEdit class="w-4 h-4" />
+              </button>
+            </div>
+            {/if}
           </div>
         </li>
     {/each}
   {/if}
 
   {#if !parts || Object.entries(parts).length === 0}
-    <li class="text-center italic opacity-60">No parts</li>
+    <p class="text-center italic opacity-60 py-4">No parts</p>
   {/if}
+
+  <div class="px-4 py-3 flex gap-2">
+    <button class="btn btn-sm btn-outline flex-1" onclick={onAddPart}>
+      <IconLucidePlus class="w-4 h-4" />
+      Add Part
+    </button>
+    <button class="btn btn-sm btn-outline flex-1" onclick={() => fileInput.click()}>
+      <IconLucideUpload class="w-4 h-4" />
+      KiCad Netlist
+    </button>
+    <input
+      bind:this={fileInput}
+      type="file"
+      accept=".net,.xml"
+      onchange={handleFileChange}
+      class="hidden"
+    />
+  </div>
 </div>

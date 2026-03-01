@@ -1,6 +1,6 @@
-import type { Part } from "xtoedif";
+import type { Part, PinPosition } from "xtoedif";
 import { kicad_drawing_map } from "$lib/kicad_fritzing_map";
-import { convertKicadToParts, parseKiCad } from "xtoedif";
+import { convertKicadToParts, parseKiCad, matchFootprint } from "xtoedif";
 
 export interface InitializedData {
   parts: Record<string, Part>;
@@ -8,22 +8,27 @@ export interface InitializedData {
   placedParts: App.PlacedPart[];
 }
 
+const createEmptyData = (): InitializedData => ({
+  parts: {},
+  parsedKiCadDoc: null,
+  placedParts: []
+});
+
 export function initializeFromSpice(spice: string | null): InitializedData {
   if (!spice) {
-    return {
-      parts: {},
-      parsedKiCadDoc: null,
-      placedParts: []
-    };
+    return createEmptyData();
   }
 
   try {
     const parsedKiCadDoc = parseKiCad(spice);
     const parts = convertKicadToParts(spice);
-    
+
     // Pre-process pin information and network data into parts
     preprocessPartPinsAndNetworks(parts, parsedKiCadDoc);
-    
+
+    // Auto-generate footprints for parts that don't have one
+    autoGenerateFootprints(parts);
+
     const placedParts: App.PlacedPart[] = [];
     let partI = -1;
     for (let [partKey, part] of Object.entries(parts)) {
@@ -43,12 +48,8 @@ export function initializeFromSpice(spice: string | null): InitializedData {
       placedParts
     };
   } catch (error) {
-    console.error("Failed to parse SPICE file:", error);
-    return {
-      parts: {},
-      parsedKiCadDoc: null,
-      placedParts: []
-    };
+    console.error("Failed to parse KiCad netlist:", error);
+    return createEmptyData();
   }
 }
 
@@ -57,17 +58,18 @@ function preprocessPartPinsAndNetworks(parts: Record<string, Part>, parsedKiCadD
 
   // First pass: collect pin definitions from libparts
   Object.entries(parts).forEach(([partKey, part]) => {
-    // Try to find the libpart - try multiple matching strategies
-    const libpart = Object.values(parsedKiCadDoc.libparts).find((lp: any) => {
-      // Try direct value match
-      if (lp.part === part.comp.value) return true;
-      // Try lib:part format
-      if (lp.lib && lp.part && (lp.lib + ":" + lp.part) === part.comp.value) return true;
-      // Try footprint match as fallback
-      if (part.comp.footprint && lp.footprint === part.comp.footprint) return true;
+    // Find the libpart - the libparts map is keyed by part name (indexBy strips the key)
+    const libpartEntry = Object.entries(parsedKiCadDoc.libparts).find(([partName, lp]: [string, any]) => {
+      // Try direct value match (e.g., "ESP32-WROOM-32" === "ESP32-WROOM-32")
+      if (partName === part.comp.value) return true;
+      // Try lib:part format (e.g., "RF_Module:ESP32-WROOM-32")
+      if (lp.lib && (lp.lib + ":" + partName) === part.comp.value) return true;
+      // Try description match as fallback
+      if (part.comp.description && lp.description === part.comp.description) return true;
       return false;
     });
-    
+    const libpart = libpartEntry?.[1];
+
     if (libpart && (libpart as any).pins) {
       part.pins = (libpart as any).pins.map((pin: any) => ({
         pinNumber: pin.pinNumber || pin.num || pin.ref || pin.pin,
@@ -102,4 +104,69 @@ function preprocessPartPinsAndNetworks(parts: Record<string, Part>, parsedKiCadD
       }
     });
   });
+}
+
+/**
+ * Auto-generate footprints for parts that don't have one.
+ * First checks KNOWN_FOOTPRINTS via matchFootprint(), then falls back to generic layouts:
+ * - 1-8 pins: single row (1xN)
+ * - 9+ pins: DIP layout (2 parallel columns)
+ */
+function autoGenerateFootprints(parts: Record<string, Part>): void {
+  for (const [partKey, part] of Object.entries(parts)) {
+    if (part.footprint) continue;
+    if (!part.pins || part.pins.length === 0) continue;
+
+    const known = matchFootprint(part);
+    if (known) {
+      part.footprint = known;
+      continue;
+    }
+
+    const pinCount = part.pins.length;
+    const pins: PinPosition[] = [];
+
+    if (pinCount <= 8) {
+      // Single row layout
+      for (let i = 0; i < pinCount; i++) {
+        pins.push({
+          x: i,
+          y: 0,
+          pinNumber: part.pins[i].pinNumber,
+          name: part.pins[i].name,
+        });
+      }
+      part.footprint = {
+        name: `${pinCount}-Pin Row`,
+        layout: { type: "fixed", pins },
+      };
+    } else {
+      // DIP layout: 2 columns
+      const halfPins = Math.ceil(pinCount / 2);
+      const dipWidth = 2;
+      // Left column: pins go down
+      for (let i = 0; i < halfPins; i++) {
+        pins.push({
+          x: 0,
+          y: i,
+          pinNumber: part.pins[i].pinNumber,
+          name: part.pins[i].name,
+        });
+      }
+      // Right column: pins go up (DIP convention)
+      for (let i = halfPins; i < pinCount; i++) {
+        const rightIdx = i - halfPins;
+        pins.push({
+          x: dipWidth,
+          y: halfPins - 1 - rightIdx,
+          pinNumber: part.pins[i].pinNumber,
+          name: part.pins[i].name,
+        });
+      }
+      part.footprint = {
+        name: `DIP-${pinCount}`,
+        layout: { type: "fixed", pins },
+      };
+    }
+  }
 }

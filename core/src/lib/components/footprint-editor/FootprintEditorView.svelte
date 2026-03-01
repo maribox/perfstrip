@@ -20,7 +20,6 @@
     variableFootprintSettings: VariableFootprintSettingsType;
     footprintEditState: FootprintEditState;
     parts: Record<string, Part>;
-    parsedKiCadDoc: any;
     availableFootprints: string[];
     currentPart: Part | null;
     currentPartPins: PinRow[];
@@ -52,6 +51,7 @@
     onToggleGroupConnectedPins: () => void;
     onClearAllBodies: () => void;
     onRemoveBody: (index: number) => void;
+    onPartNameChange?: (name: string) => void;
     handlePadClick: (x: number, y: number) => void;
     handleBodyDrag: (x: number, y: number, width: number, height: number) => void;
     handlePinDrag: (x: number, y: number, width: number, height: number) => void;
@@ -65,7 +65,6 @@
     variableFootprintSettings = $bindable(),
     footprintEditState,
     parts,
-    parsedKiCadDoc,
     availableFootprints,
     currentPart,
     currentPartPins,
@@ -97,6 +96,7 @@
     onToggleGroupConnectedPins,
     onClearAllBodies,
     onRemoveBody,
+    onPartNameChange,
     handlePadClick,
     handleBodyDrag,
     handlePinDrag
@@ -153,6 +153,7 @@
       {componentBodies}
       {onClearAllBodies}
       {onRemoveBody}
+      {onPartNameChange}
     />
   </div>
 </div>

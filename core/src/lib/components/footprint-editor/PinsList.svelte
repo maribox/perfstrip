@@ -48,15 +48,24 @@
     highlightedPinNumber
   }: Props = $props();
   let scrollContainer: HTMLElement;
+  // For scratch parts (no predefined pins), build pin rows from placed pins
+  const isScratchPart = $derived(currentPartPins.length === 0 && selectedPins.length > 0);
+  const effectivePins: PinRow[] = $derived(
+    isScratchPart
+      ? selectedPins.map(sp => ({ pinNumber: sp.pinNumber, name: sp.name || `${sp.pinNumber}`, isPlaced: true }))
+      : currentPartPins
+  );
   let networkByPin = $derived.by(() => {
     const map = new Map<string | number, NetworkInfo | null>();
-    currentPartPins.forEach((pin) => {
+    effectivePins.forEach((pin) => {
       map.set(pin.pinNumber, getNetworkForPin(footprintEditQueuePartKey, pin.pinNumber));
     });
     return map;
   });
   let displayedPins = $derived.by(() => {
-    return currentPartPins.filter((pin) => {
+    // Scratch parts have no networks, so skip disconnect filtering
+    if (isScratchPart) return effectivePins;
+    return effectivePins.filter((pin) => {
       const networkInfo = networkByPin.get(pin.pinNumber);
       return !hideDisconnectedPins || (networkInfo && networkInfo.netName !== "No net");
     });
@@ -150,9 +159,9 @@
     </div>
   </div>
   <div class="bg-base-100 rounded p-2 flex-1 min-h-0 overflow-y-auto" bind:this={scrollContainer}>
-    {#if currentPartPins.length === 0}
+    {#if effectivePins.length === 0}
       <div class="text-base-content/50 text-center py-4 text-xs">
-        No pins defined for this part
+        Click on pads to place pins
       </div>
     {:else}
       <div class="space-y-2">

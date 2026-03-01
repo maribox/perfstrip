@@ -1,6 +1,7 @@
 import type { ComponentBody, FootprintEditState, PinInfo, PinPosition, VariableFootprintSettings } from "$lib/types";
 import type { PartPin } from "xtoedif";
 import { collectDragPinGroups, collectDragPins, resolveFootprintLoad } from "./editorHelpers";
+import { DEFAULT_VARIABLE_FOOTPRINT_SETTINGS } from "./editorDefaults";
 
 export const applyPadClick = ({
   x,
@@ -167,9 +168,8 @@ export const applyResetEditingState = () => {
   return {
     selectedPins: [] as PinPosition[],
     componentBodies: [] as ComponentBody[],
-    variableFootprintSettings: { minLength: 3, maxLength: 10 },
+    variableFootprintSettings: { ...DEFAULT_VARIABLE_FOOTPRINT_SETTINGS },
     highlightedPin: null as PinInfo | null,
-    boardSizeManuallySet: false,
     forcedPinNumber: null as string | number | null,
     skippedPinNumbers: [] as Array<string | number>,
     autoBodyEnabled: true

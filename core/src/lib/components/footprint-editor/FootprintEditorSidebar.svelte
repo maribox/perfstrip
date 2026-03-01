@@ -50,6 +50,7 @@
     componentBodies: ComponentBody[];
     onClearAllBodies: () => void;
     onRemoveBody: (index: number) => void;
+    onPartNameChange?: (name: string) => void;
   }
 
   const { 
@@ -84,8 +85,11 @@
     onToggleGroupConnectedPins,
     componentBodies,
     onClearAllBodies,
-    onRemoveBody
+    onRemoveBody,
+    onPartNameChange
   }: Props = $props();
+
+  const isScratchPart = $derived(currentPart != null && (!currentPart.pins || currentPart.pins.length === 0));
 </script>
 
 <div class="w-full max-w-[33%] flex flex-col gap-5 pr-2 min-h-0 overflow-hidden">
@@ -107,9 +111,19 @@
             {/if}
           </div>
           <div class="min-w-0">
-            <div class="text-xs uppercase tracking-wide text-base-content/50">Editing</div>
-            <div class="text-sm font-semibold truncate">{currentPart.name}</div>
-            {#if currentPart.description}
+            <div class="text-xs uppercase tracking-wide text-base-content/50">{isScratchPart ? "New Part" : "Editing"}</div>
+            {#if isScratchPart && onPartNameChange}
+              <input
+                type="text"
+                class="input input-sm input-ghost font-semibold text-sm p-0 h-6 w-full"
+                placeholder="Part name"
+                value={currentPart.name}
+                oninput={(e) => onPartNameChange(e.currentTarget.value)}
+              />
+            {:else}
+              <div class="text-sm font-semibold truncate">{currentPart.name}</div>
+            {/if}
+            {#if currentPart.description && !isScratchPart}
               <div class="text-xs text-base-content/60 line-clamp-1">{currentPart.description}</div>
             {/if}
           </div>
